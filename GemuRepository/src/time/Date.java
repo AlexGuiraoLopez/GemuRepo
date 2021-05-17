@@ -4,11 +4,11 @@ package time;
  */
 public class Date 
 {
-    private byte year;
-    private byte month;
-    private byte day;
+    private int year;
+    private int month;
+    private int day;
 
-    public Date(byte year, byte month, byte day) 
+    public Date(int year, int month, int day) 
     {
         if (checkDateFormat(month, day))
         {
@@ -25,7 +25,7 @@ public class Date
      * @param day día a comprobar.
      * @return TRUE si el formato es correcto.
      */
-    private boolean checkDateFormat(byte month, byte day)
+    private boolean checkDateFormat(int month, int day)
     {
         boolean isCorrect=false;
         
@@ -37,15 +37,15 @@ public class Date
         return isCorrect;
     }
 
-    public byte getYear() {
+    public int getYear() {
         return year;
     }
 
-    public byte getMonth() {
+    public int getMonth() {
         return month;
     }
 
-    public byte getDay() {
+    public int getDay() {
         return day;
     }
     

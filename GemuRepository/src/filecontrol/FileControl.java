@@ -33,10 +33,9 @@ public class FileControl
                 raf.write(v.getFormattedTitle().getBytes(Charset.defaultCharset()));
                 raf.write(v.getFormattedCompany().getBytes(Charset.defaultCharset()));
                 raf.write(v.getFormattedGameConsole().getBytes(Charset.defaultCharset()));
-                raf.write(v.getFormattedGameConsole().getBytes(Charset.defaultCharset()));
-                raf.writeByte(v.getReleaseDate().getYear());
-                raf.writeByte(v.getReleaseDate().getMonth());
-                raf.writeByte(v.getReleaseDate().getDay());
+                raf.writeInt(v.getReleaseDate().getYear());
+                raf.writeInt(v.getReleaseDate().getMonth());
+                raf.writeInt(v.getReleaseDate().getDay());
             }
             
             raf.close();
@@ -45,61 +44,55 @@ public class FileControl
             System.out.println(ConsoleColors.RED+"No se pudo acceder al archivo");
             ex.printStackTrace();
         }
-        
     }
 
     public static ArrayList<Videogame> read(){
         ArrayList list = new ArrayList();
+        
         File file = new File(PATH);
-        int recordAmount=getRecordAmount();
-        
-        byte[] bName;
-        String title;
-        String company;
-        String gameConsole;
-        byte year;
-        byte month;
-        byte day;
-        
-        RandomAccessFile raf;
-        try {
-            raf = new RandomAccessFile(file,"r");
-            for (int i = 0; i<recordAmount;i++){
-                bName= new byte[Videogame.TITLE_MAX_LENGTH];
-                raf.read(bName);
-                title=new String(bName);
-                
-                bName= new byte[Videogame.COMPANY_MAX_LENGTH];
-                raf.read(bName);
-                company=new String(bName);
-                
-                bName= new byte[Videogame.GAME_CONSOLE_MAX_LENGTH];
-                raf.read(bName);
-                gameConsole=new String(bName);
-                
-                year=raf.readByte();
-                month=raf.readByte();
-                day=raf.readByte();
-               
-                list.add(new Videogame(title,company,gameConsole,new Date(year,month,day)));
-            }
-            
-            raf.close();
-        } catch (FileNotFoundException ex) {
-            System.out.println(ConsoleColors.RED+"No se pudo encontrar el archivo.");
-            ex.printStackTrace();
-        }catch (IOException ex){
-            System.out.println(ConsoleColors.RED+"No se pudo acceder al archivo.");
-            ex.printStackTrace();
-        }
-        
-        
+        if (file.exists()&&getRecordAmount()>0){
+            int recordAmount=getRecordAmount();
 
-        
-        
+            byte[] bName;
+            String title;
+            String company;
+            String gameConsole;
+            int year;
+            int month;
+            int day;
+
+            RandomAccessFile raf;
+            try {
+                raf = new RandomAccessFile(file,"r");
+                for (int i = 0; i<recordAmount;i++){
+                    bName= new byte[Videogame.TITLE_MAX_LENGTH];
+                    raf.read(bName);
+                    title=new String(bName).trim();
+
+                    bName= new byte[Videogame.COMPANY_MAX_LENGTH];
+                    raf.read(bName);
+                    company=new String(bName).trim();
+
+                    bName= new byte[Videogame.GAME_CONSOLE_MAX_LENGTH];
+                    raf.read(bName);
+                    gameConsole=new String(bName).trim();
+
+                    year=raf.readInt();
+                    month=raf.readInt();
+                    day=raf.readInt();
+
+                    list.add(new Videogame(title,company,gameConsole,new Date(year,month,day)));
+                }
+
+                raf.close();
+            } catch (FileNotFoundException ex) {
+                System.out.println(ConsoleColors.RED+"No se pudo encontrar el archivo.");
+                ex.printStackTrace();
+            }catch (IOException ex){
+                System.out.println(ConsoleColors.RED+"No se pudo acceder al archivo.");
+                ex.printStackTrace();
+            }
+        }
         return list;
     }
-
-
-
 }
