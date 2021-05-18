@@ -1,4 +1,7 @@
 package time;
+
+import visualfront.ConsoleColors;
+
 /** 
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
  */
@@ -15,6 +18,8 @@ public class Date
             this.year=year;
             this.month=month;
             this.day=day;
+        }else{
+            System.out.println(ConsoleColors.RED+"Los valores de la fecha no son correctos.");
         }
     }
 

@@ -95,4 +95,12 @@ public class FileControl
         }
         return list;
     }
+
+    public static void delete(){
+        File file = new File(PATH);
+        if (file.exists()){
+        file.delete();
+    
+        }
+    }
 }

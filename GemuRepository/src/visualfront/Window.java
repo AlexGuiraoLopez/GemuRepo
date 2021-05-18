@@ -8,19 +8,29 @@ import filecontrol.FileControl;
 import java.util.ArrayList;
 import time.Date;
 import videogame.Videogame;
+import mainprogram.MainProgram;
 /**
- *
+ * Investigar sobre JDialog.
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
  */
 public class Window extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Window
-     */
-    public Window() {
+    /*Lista local de videojuegos. 
+    Los datos pasan al archivo binario cuando el usuario selecciona la opción de guardar.*/
+    private ArrayList<Videogame> gameList = FileControl.read();; 
+    
+    private static int counter=0;
+    
+    public Window(String appName) {
         initComponents();
+        setTitle(appName);
     }
 
+    public void showList(){
+        for (Videogame v:gameList){
+            System.out.println(v.toString());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,6 +58,7 @@ public class Window extends javax.swing.JFrame {
         lblGameCompany = new javax.swing.JLabel();
         lblGameConsole = new javax.swing.JLabel();
         lblGameReleaseDate = new javax.swing.JLabel();
+        btnErase = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,12 +73,7 @@ public class Window extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel5.setText("INTRODUCE UN VIDEOJUEGO");
 
-        btnRegister.setText("Registrar");
-        btnRegister.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegisterMouseClicked(evt);
-            }
-        });
+        btnRegister.setText("Record Data");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
@@ -75,8 +81,18 @@ public class Window extends javax.swing.JFrame {
         });
 
         btnLeftArrow.setText("<==");
+        btnLeftArrow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLeftArrowActionPerformed(evt);
+            }
+        });
 
         btnRightArrow.setText("==>");
+        btnRightArrow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRightArrowMouseClicked(evt);
+            }
+        });
 
         lblGameTitle.setText("jLabel6");
 
@@ -85,6 +101,13 @@ public class Window extends javax.swing.JFrame {
         lblGameConsole.setText("jLabel8");
 
         lblGameReleaseDate.setText("jLabel9");
+
+        btnErase.setText("Erase Data");
+        btnErase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEraseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,8 +151,10 @@ public class Window extends javax.swing.JFrame {
                         .addContainerGap(216, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnErase, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,9 +192,11 @@ public class Window extends javax.swing.JFrame {
                     .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLeftArrow)
                     .addComponent(btnRightArrow))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnErase, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
 
         txtTitle.getAccessibleContext().setAccessibleName("txtTitle");
@@ -188,24 +215,69 @@ public class Window extends javax.swing.JFrame {
     }
     
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegisterActionPerformed
-
-    private void btnRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMouseClicked
         String title=txtTitle.getText();
         String company=txtCompany.getText();
         String gameConsole=txtGameConsole.getText();
-        int day=Integer.parseInt(txtDay.getText());
         int year=Integer.parseInt(txtYear.getText());
         int month=Integer.parseInt(txtMonth.getText());
+        int day=Integer.parseInt(txtDay.getText());
         
-        mainprogram.MainProgram.addGame(title, company, gameConsole, year, month, day);
-       
-    }//GEN-LAST:event_btnRegisterMouseClicked
+        gameList.add(new Videogame(title, company, gameConsole, new Date (year,month,day)));
+        FileControl.write(gameList);
+        
+        txtTitle.setText("");
+        txtCompany.setText("");
+        txtGameConsole.setText("");
+        txtDay.setText("");
+        txtYear.setText("");
+        txtMonth.setText("");
+        
+        //DEBUG
+        System.out.println(ConsoleColors.GREEN+"¡El videojuego se registró con éxito!");
+        showList();
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnRightArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRightArrowMouseClicked
+        if(gameList.size()>counter)
+        { 
+            lblGameTitle.setText(gameList.get(counter).getTitle());
+            lblGameCompany.setText(gameList.get(counter).getCompany());
+            lblGameConsole.setText(gameList.get(counter).getGameConsole());
+            lblGameReleaseDate.setText(gameList.get(counter).getReleaseDate().toString());
+            counter++;
+            
+            //DEBUG
+            System.out.println("Counter: "+counter);
+        }
+    }//GEN-LAST:event_btnRightArrowMouseClicked
+
+    private void btnEraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEraseActionPerformed
+        gameList.clear();
+        FileControl.delete();
+        counter=0;
+         //DEBUG
+        System.out.println(ConsoleColors.GREEN+"El contenido se ha eliminado correctamente.");
+    }//GEN-LAST:event_btnEraseActionPerformed
+
+    private void btnLeftArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeftArrowActionPerformed
+         if(counter!=0)
+        { 
+            counter--;
+            
+            lblGameTitle.setText(gameList.get(counter).getTitle());
+            lblGameCompany.setText(gameList.get(counter).getCompany());
+            lblGameConsole.setText(gameList.get(counter).getGameConsole());
+            lblGameReleaseDate.setText(gameList.get(counter).getReleaseDate().toString());
+            
+             //DEBUG
+            System.out.println("Counter: "+counter);
+        }
+    }//GEN-LAST:event_btnLeftArrowActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnErase;
     private javax.swing.JButton btnLeftArrow;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnRightArrow;
