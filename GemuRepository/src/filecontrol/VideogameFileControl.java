@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import time.Date;
 import videogame.Videogame;
 import visualfront.ConsoleColors;
@@ -15,7 +13,7 @@ import visualfront.ConsoleColors;
 /** 
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
  */
-public class FileControl 
+public class VideogameFileControl 
 {
     public final static String PATH="datafiles/videogame.bin";
 

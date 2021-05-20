@@ -1,6 +1,7 @@
 package mainprogram;
 
 import javax.swing.JOptionPane;
+import visualfront.Login;
 import visualfront.Window;
 
 /**
@@ -10,6 +11,6 @@ public class MainProgram
 {
     public static void main(String[] args) 
     {
-        new Window("Game Repository").start();
+        new Login("Game Repository").start();
     }
 }
