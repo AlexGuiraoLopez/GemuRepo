@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package visualfront;
+import appinfo.AppInfo;
 import filecontrol.VideogameFileControl;
 import java.util.ArrayList;
 import time.Date;
@@ -13,16 +14,16 @@ import mainprogram.MainProgram;
  * Investigar sobre JDialog.
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
  */
-public class Window extends javax.swing.JFrame {
+public class AddElement extends javax.swing.JFrame {
     /*Lista local de videojuegos. 
     Los datos pasan al archivo binario cuando el usuario selecciona la opción de guardar.*/
     private ArrayList<Videogame> gameList = VideogameFileControl.read();; 
     
     private static int counter=0;
     
-    public Window(String appName) {
+    public AddElement() {
         initComponents();
-        setTitle(appName);
+        setTitle(AppInfo.name);
     }
 
     public void showList(){
