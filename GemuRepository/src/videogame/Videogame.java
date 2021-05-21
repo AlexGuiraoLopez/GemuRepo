@@ -1,5 +1,5 @@
 package videogame;
-import time.Date;
+import date.Date;
 /** 
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
  */
