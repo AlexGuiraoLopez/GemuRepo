@@ -9,28 +9,28 @@ import filecontrol.VideogameFileControl;
 import java.util.ArrayList;
 import date.Date;
 import videogame.Videogame;
-import mainprogram.MainProgram;
+import datacontrol.DataControl;
 /**
  * Investigar sobre JDialog.
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
  */
 public class AddElement extends javax.swing.JFrame {
-    /*Lista local de videojuegos. 
-    Los datos pasan al archivo binario cuando el usuario selecciona la opción de guardar.*/
-    private ArrayList<Videogame> gameList = VideogameFileControl.read();; 
-    
+
     private static int counter=0;
     
     public AddElement() {
         initComponents();
         setTitle(AppInfo.name);
+        setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     public void showList(){
-        for (Videogame v:gameList){
+        for (Videogame v:DataControl.gameList){
             System.out.println(v.toString());
         }
     }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +59,6 @@ public class AddElement extends javax.swing.JFrame {
         lblGameCompany = new javax.swing.JLabel();
         lblGameConsole = new javax.swing.JLabel();
         lblGameReleaseDate = new javax.swing.JLabel();
-        btnErase = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,13 +102,6 @@ public class AddElement extends javax.swing.JFrame {
 
         lblGameReleaseDate.setText("jLabel9");
 
-        btnErase.setText("Erase Data");
-        btnErase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEraseActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,9 +144,7 @@ public class AddElement extends javax.swing.JFrame {
                         .addContainerGap(216, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnErase, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
@@ -194,9 +184,7 @@ public class AddElement extends javax.swing.JFrame {
                     .addComponent(btnLeftArrow)
                     .addComponent(btnRightArrow))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnErase, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
 
@@ -210,12 +198,17 @@ public class AddElement extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void start()
-    {
-        setVisible(true);
-    }
+
     
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        addVideogame();
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    /**
+     * Añade un videojuego a la lista local. (Datos no persistentes)
+     * @throws NumberFormatException 
+     */
+    private void addVideogame() throws NumberFormatException {
         String title=txtTitle.getText();
         String company=txtCompany.getText();
         String gameConsole=txtGameConsole.getText();
@@ -223,8 +216,7 @@ public class AddElement extends javax.swing.JFrame {
         int month=Integer.parseInt(txtMonth.getText());
         int day=Integer.parseInt(txtDay.getText());
         
-        gameList.add(new Videogame(title, company, gameConsole, new Date (year,month,day)));
-        VideogameFileControl.write(gameList);
+        DataControl.gameList.add(new Videogame(title, company, gameConsole, new Date (year,month,day)));
         
         txtTitle.setText("");
         txtCompany.setText("");
@@ -233,18 +225,20 @@ public class AddElement extends javax.swing.JFrame {
         txtYear.setText("");
         txtMonth.setText("");
         
+        MainWindow mw = new MainWindow();
+        setVisible(false);
         //DEBUG
         System.out.println(ConsoleColors.GREEN+"¡El videojuego se registró con éxito!");
         showList();
-    }//GEN-LAST:event_btnRegisterActionPerformed
+    }
 
     private void btnRightArrowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRightArrowMouseClicked
-        if(gameList.size()>counter)
+        if(DataControl.gameList.size()>counter)
         { 
-            lblGameTitle.setText(gameList.get(counter).getTitle());
-            lblGameCompany.setText(gameList.get(counter).getCompany());
-            lblGameConsole.setText(gameList.get(counter).getGameConsole());
-            lblGameReleaseDate.setText(gameList.get(counter).getReleaseDate().toString());
+            lblGameTitle.setText(DataControl.gameList.get(counter).getTitle());
+            lblGameCompany.setText(DataControl.gameList.get(counter).getCompany());
+            lblGameConsole.setText(DataControl.gameList.get(counter).getGameConsole());
+            lblGameReleaseDate.setText(DataControl.gameList.get(counter).getReleaseDate().toString());
             counter++;
             
             //DEBUG
@@ -252,23 +246,15 @@ public class AddElement extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRightArrowMouseClicked
 
-    private void btnEraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEraseActionPerformed
-        gameList.clear();
-        VideogameFileControl.delete();
-        counter=0;
-         //DEBUG
-        System.out.println(ConsoleColors.GREEN+"El contenido se ha eliminado correctamente.");
-    }//GEN-LAST:event_btnEraseActionPerformed
-
     private void btnLeftArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeftArrowActionPerformed
          if(counter!=0)
         { 
             counter--;
             
-            lblGameTitle.setText(gameList.get(counter).getTitle());
-            lblGameCompany.setText(gameList.get(counter).getCompany());
-            lblGameConsole.setText(gameList.get(counter).getGameConsole());
-            lblGameReleaseDate.setText(gameList.get(counter).getReleaseDate().toString());
+            lblGameTitle.setText(DataControl.gameList.get(counter).getTitle());
+            lblGameCompany.setText(DataControl.gameList.get(counter).getCompany());
+            lblGameConsole.setText(DataControl.gameList.get(counter).getGameConsole());
+            lblGameReleaseDate.setText(DataControl.gameList.get(counter).getReleaseDate().toString());
             
              //DEBUG
             System.out.println("Counter: "+counter);
@@ -278,7 +264,6 @@ public class AddElement extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnErase;
     private javax.swing.JButton btnLeftArrow;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnRightArrow;

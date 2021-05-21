@@ -12,6 +12,7 @@ public class MainProgram
 {
     public static void main(String[] args) 
     {
+        //AddElement ae = new AddElement();
         MainWindow mw = new MainWindow();
         //new Login().start();
     }
