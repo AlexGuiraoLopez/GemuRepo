@@ -1,7 +1,9 @@
 package datacontrol;
 
+import filecontrol.UserFileControl;
 import filecontrol.VideogameFileControl;
 import java.util.ArrayList;
+import user.User;
 import videogame.Videogame;
 
 /** 
@@ -10,4 +12,5 @@ import videogame.Videogame;
 public class DataControl 
 {
     public static ArrayList<Videogame> gameList=VideogameFileControl.read();
+    public static ArrayList<User> userList = UserFileControl.read();
 }

@@ -50,7 +50,7 @@ public class AddElement extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtYear = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        btnRegister = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
         txtMonth = new javax.swing.JTextField();
         txtDay = new javax.swing.JTextField();
         btnLeftArrow = new javax.swing.JButton();
@@ -59,6 +59,7 @@ public class AddElement extends javax.swing.JFrame {
         lblGameCompany = new javax.swing.JLabel();
         lblGameConsole = new javax.swing.JLabel();
         lblGameReleaseDate = new javax.swing.JLabel();
+        btnRegister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,10 +74,10 @@ public class AddElement extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel5.setText("INTRODUCE UN VIDEOJUEGO");
 
-        btnRegister.setText("Record Data");
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterActionPerformed(evt);
+                btnCancelActionPerformed(evt);
             }
         });
 
@@ -101,6 +102,13 @@ public class AddElement extends javax.swing.JFrame {
         lblGameConsole.setText("jLabel8");
 
         lblGameReleaseDate.setText("jLabel9");
+
+        btnRegister.setText("Record Data");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,6 +152,8 @@ public class AddElement extends javax.swing.JFrame {
                         .addContainerGap(216, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -184,7 +194,9 @@ public class AddElement extends javax.swing.JFrame {
                     .addComponent(btnLeftArrow)
                     .addComponent(btnRightArrow))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
 
@@ -192,7 +204,7 @@ public class AddElement extends javax.swing.JFrame {
         txtCompany.getAccessibleContext().setAccessibleName("txtCompany");
         txtGameConsole.getAccessibleContext().setAccessibleName("txtGameConsole");
         txtYear.getAccessibleContext().setAccessibleName("txtYear");
-        btnRegister.getAccessibleContext().setAccessibleName("btnRecord");
+        btnCancel.getAccessibleContext().setAccessibleName("btnRecord");
         txtMonth.getAccessibleContext().setAccessibleName("txtMonth");
         txtDay.getAccessibleContext().setAccessibleName("txtDay");
 
@@ -200,9 +212,10 @@ public class AddElement extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        addVideogame();
-    }//GEN-LAST:event_btnRegisterActionPerformed
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        setVisible(false);
+        new MainWindow();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * Añade un videojuego a la lista local. (Datos no persistentes)
@@ -261,9 +274,14 @@ public class AddElement extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLeftArrowActionPerformed
 
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        addVideogame();
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnLeftArrow;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnRightArrow;

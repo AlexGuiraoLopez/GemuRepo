@@ -20,24 +20,27 @@ public class UserFileControl
             return (int)new File(PATH).length()/User.getRecordSize();
         }
     
-       public static void write(ArrayList<User> list){
-        File file = new File(PATH);
+       public static void write(ArrayList<User> list)
+       {
+            File file = new File(PATH);
         
-        try {
-            RandomAccessFile raf = new RandomAccessFile(file, "rw");
-            
-            for (User u:list){
-                raf.write(u.getFormattedUsername().getBytes(Charset.defaultCharset()));
-                raf.write(u.getFormattedPassword().getBytes(Charset.defaultCharset()));
+            try 
+            {
+                RandomAccessFile raf = new RandomAccessFile(file, "rw");
+
+                for (User u:list){
+                    raf.write(u.getFormattedUsername().getBytes(Charset.defaultCharset()));
+                    raf.write(u.getFormattedPassword().getBytes(Charset.defaultCharset()));
+                    raf.write(u.getFormattedEmail().getBytes(Charset.defaultCharset()));
+                }
+
+                raf.close();
+
+            } catch (IOException ex) {
+                System.out.println(ConsoleColors.RED+"No se pudo acceder al archivo");
+                ex.printStackTrace();
             }
-            
-            raf.close();
-            
-        } catch (IOException ex) {
-            System.out.println(ConsoleColors.RED+"No se pudo acceder al archivo");
-            ex.printStackTrace();
         }
-    }
       
        public static ArrayList<User> read(){
         ArrayList list = new ArrayList();
@@ -49,7 +52,7 @@ public class UserFileControl
             byte[] bName;
             String username;
             String password;
-            
+            String email;
             RandomAccessFile raf;
             try {
                 raf = new RandomAccessFile(file,"r");
@@ -62,7 +65,11 @@ public class UserFileControl
                     raf.read(bName);
                     password=new String(bName).trim();
 
-                    list.add(new User(username,password));
+                    bName= new byte[User.MAX_EMAIL_LENGTH];
+                    raf.read(bName);
+                    email=new String(bName).trim();
+                    
+                    list.add(new User(username,password,email));
                 }
 
                 raf.close();
@@ -79,13 +86,14 @@ public class UserFileControl
        
        
        
-       public static void delete(){
-        File file = new File(PATH);
-        if (file.exists()){
-        file.delete();
-    
+       public static void delete()
+       {
+            File file = new File(PATH);
+            if (file.exists())
+            {
+                file.delete();
+            }
         }
-    }
       
       
       
