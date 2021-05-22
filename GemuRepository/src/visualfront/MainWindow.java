@@ -75,8 +75,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         tblList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title", "Console", "Company", "Release Year"
