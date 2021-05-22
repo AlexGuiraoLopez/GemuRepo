@@ -2,9 +2,18 @@ package visualfront;
 
 import appinfo.AppInfo;
 import datacontrol.DataControl;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.util.Comparator;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
+import videogame.Videogame;
 
 /**
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
@@ -21,9 +30,11 @@ public class MainWindow extends javax.swing.JFrame {
         setVisible(true);
         setTitle(AppInfo.name);
         fillTable();
+        listenTableRows();
         setResizable(false);
+        
     }
-
+    
     /**
      * Rellena la tabla con los videojuegos de la lista.
      */
@@ -40,6 +51,26 @@ public class MainWindow extends javax.swing.JFrame {
             model.addRow(rowData);
         }
     }
+    
+    /**
+     * Muestra la imagen correspondiente al videojuego seleccionado en la lista.
+     */
+    public void listenTableRows()
+    {
+        ListSelectionModel model = tblList.getSelectionModel();
+        model.addListSelectionListener(new ListSelectionListener() 
+        {
+            @Override
+            public void valueChanged(ListSelectionEvent lse) 
+            {
+                if (!model.isSelectionEmpty())
+                {
+                    int selectedRow = model.getMinSelectionIndex();
+                    imgGameCase.setIcon(new ImageIcon("assets/caseImage/"+DataControl.gameList.get(selectedRow).getImage()));
+                }
+            }
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,12 +86,14 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblList = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        imgGameCase = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        btnOff = new javax.swing.JMenu();
+        btnSort = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -106,7 +139,7 @@ public class MainWindow extends javax.swing.JFrame {
             tblList.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/splatoon2.jpg"))); // NOI18N
+        imgGameCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/splatoon2.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,7 +148,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(imgGameCase)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -123,7 +156,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1615, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(imgGameCase, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -167,6 +200,22 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu4);
 
+        btnOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/off.png"))); // NOI18N
+        btnOff.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOffMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(btnOff);
+
+        btnSort.setText("Sort");
+        btnSort.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSortMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(btnSort);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,9 +257,33 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenu2MousePressed
 
+    private void btnOffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOffMouseClicked
+        if (DataControl.saved)
+        {
+            System.exit(100);
+        }else{
+            new ExitSave(this,true);
+        }
+    }//GEN-LAST:event_btnOffMouseClicked
+
+    private void btnSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSortMouseClicked
+        DataControl.gameList.sort(new Comparator<Videogame>()
+        {
+            @Override
+            public int compare(Videogame t, Videogame t1) 
+            {
+                int char1 = t.getTitle().charAt(0);
+                int char2 = t1.getTitle().charAt(0);
+                return char1-char2;
+            }
+        });
+    }//GEN-LAST:event_btnSortMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu btnOff;
+    private javax.swing.JMenu btnSort;
+    private javax.swing.JLabel imgGameCase;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

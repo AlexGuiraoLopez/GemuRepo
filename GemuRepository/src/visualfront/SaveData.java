@@ -104,7 +104,8 @@ public class SaveData extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         VideogameFileControl.write(DataControl.gameList);
-             setVisible(false);
+        DataControl.saved=true;
+        setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

@@ -13,4 +13,5 @@ public class DataControl
 {
     public static ArrayList<Videogame> gameList=VideogameFileControl.read();
     public static ArrayList<User> userList = UserFileControl.read();
+    public static boolean saved=true;
 }

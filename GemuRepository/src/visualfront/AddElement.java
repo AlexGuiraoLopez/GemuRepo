@@ -18,19 +18,20 @@ public class AddElement extends javax.swing.JFrame {
 
     private static int counter=0;
     
-    public AddElement() {
+    public AddElement() 
+    {
         initComponents();
         setTitle(AppInfo.name);
         setVisible(true);
         setLocationRelativeTo(null);
     }
 
-    public void showList(){
+    public void showList()
+    {
         for (Videogame v:DataControl.gameList){
             System.out.println(v.toString());
         }
     }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -230,7 +231,7 @@ public class AddElement extends javax.swing.JFrame {
         int day=Integer.parseInt(txtDay.getText());
         
         DataControl.gameList.add(new Videogame(title, company, gameConsole, new Date (year,month,day)));
-        
+        DataControl.saved=false;
         txtTitle.setText("");
         txtCompany.setText("");
         txtGameConsole.setText("");

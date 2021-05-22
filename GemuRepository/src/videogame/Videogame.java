@@ -13,7 +13,8 @@ public class Videogame
     private String company;
     private String gameConsole;
     private Date releaseDate;
-
+    private String image;
+    
     public Videogame(String title, String company, String gameConsole, Date releaseDate) {
         if (title.length()<=TITLE_MAX_LENGTH){
             this.title = title;
@@ -33,16 +34,16 @@ public class Videogame
             this.gameConsole=gameConsole.substring(0, GAME_CONSOLE_MAX_LENGTH);
         }
         
+        this.image=title.toLowerCase()+".jpg";
         this.releaseDate = releaseDate;
     }
 
     @Override
-    public String toString() {
+    public String toString() 
+    {
         return "Videogame{" + "title=" + title + ", company=" + company + ", gameConsole=" + gameConsole +", " 
                 +"Release Date: "+releaseDate.toString();
     }
-    
-    
     
     /**
      * Tamaño de cada uno de los registros.
@@ -80,6 +81,11 @@ public class Videogame
     public Date getReleaseDate() {
         return releaseDate;
     }
+
+    public String getImage() {
+        return image;
+    }
+    
     
     
     
