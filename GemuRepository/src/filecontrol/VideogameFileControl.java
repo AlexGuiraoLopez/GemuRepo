@@ -27,7 +27,8 @@ public class VideogameFileControl
         try {
             RandomAccessFile raf = new RandomAccessFile(file, "rw");
             
-            for (Videogame v:list){
+            for (Videogame v:list)
+            {
                 raf.write(v.getFormattedTitle().getBytes(Charset.defaultCharset()));
                 raf.write(v.getFormattedCompany().getBytes(Charset.defaultCharset()));
                 raf.write(v.getFormattedGameConsole().getBytes(Charset.defaultCharset()));
@@ -45,7 +46,7 @@ public class VideogameFileControl
     }
 
     public static ArrayList<Videogame> read(){
-        ArrayList list = new ArrayList();
+        ArrayList <Videogame> list = new ArrayList<Videogame>();
         
         File file = new File(PATH);
         if (file.exists()&&getRecordAmount()>0){
@@ -94,11 +95,12 @@ public class VideogameFileControl
         return list;
     }
 
-    public static void delete(){
+    public static void delete()
+    {
         File file = new File(PATH);
-        if (file.exists()){
-        file.delete();
-    
+        if (file.exists())
+        {
+            file.delete();
         }
     }
 }

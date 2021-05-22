@@ -28,7 +28,8 @@ public class UserFileControl
             {
                 RandomAccessFile raf = new RandomAccessFile(file, "rw");
 
-                for (User u:list){
+                for (User u:list)
+                {
                     raf.write(u.getFormattedUsername().getBytes(Charset.defaultCharset()));
                     raf.write(u.getFormattedPassword().getBytes(Charset.defaultCharset()));
                     raf.write(u.getFormattedEmail().getBytes(Charset.defaultCharset()));
@@ -43,7 +44,7 @@ public class UserFileControl
         }
       
        public static ArrayList<User> read(){
-        ArrayList list = new ArrayList();
+        ArrayList<User> list = new ArrayList<User>();
         
         File file = new File(PATH);
         if (file.exists()&&getRecordAmount()>0){
