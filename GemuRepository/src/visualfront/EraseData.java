@@ -19,6 +19,7 @@ public class EraseData extends javax.swing.JDialog {
     public EraseData(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setIconImage(WindowControl.appIcon.getImage());
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -34,8 +35,8 @@ public class EraseData extends javax.swing.JDialog {
 
         label1 = new java.awt.Label();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnYes = new javax.swing.JButton();
+        btnNo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -46,17 +47,17 @@ public class EraseData extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel1.setText("You want to delete all data?");
 
-        jButton2.setText("Yes");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnYes.setText("Yes");
+        btnYes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnYesActionPerformed(evt);
             }
         });
 
-        jButton1.setText("No");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnNo.setText("No");
+        btnNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnNoActionPerformed(evt);
             }
         });
 
@@ -70,9 +71,9 @@ public class EraseData extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnYes, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnNo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
@@ -84,31 +85,29 @@ public class EraseData extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(btnYes)
+                    .addComponent(btnNo))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+    private void btnYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYesActionPerformed
         VideogameFileControl.delete();
         DataControl.gameList.clear();
+        DataControl.refresh=true;
         setVisible(false);
-        MainWindow mw = new MainWindow();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnYesActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MainWindow mw = new MainWindow();
+    private void btnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoActionPerformed
         setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnNoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnNo;
+    private javax.swing.JButton btnYes;
     private javax.swing.JLabel jLabel1;
     private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables

@@ -4,10 +4,13 @@ import appinfo.AppInfo;
 import datacontrol.DataControl;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Comparator;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.Timer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -18,7 +21,11 @@ import videogame.Videogame;
 /**
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
  */
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame implements ActionListener
+{
+
+    Timer timer;
+    private static final int DELAY=60;
 
     /**
      * Creates new form MainWindow
@@ -26,12 +33,14 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() 
     {
         initComponents();
+        setTitle(AppInfo.name);
+        setIconImage(WindowControl.appIcon.getImage());
         setLocationRelativeTo(null);
         setVisible(true);
-        setTitle(AppInfo.name);
         fillTable();
         listenTableRows();
         setResizable(false);
+        startTimer();
         
     }
     
@@ -49,7 +58,32 @@ public class MainWindow extends javax.swing.JFrame {
             rowData[2]= DataControl.gameList.get(i).getCompany();
             rowData[3]= DataControl.gameList.get(i).getReleaseDate();
             model.addRow(rowData);
+            DataControl.recordChanged=false;
         }
+    }
+    
+    /**
+     * Añade la fila insertada más reciente a la tabla.
+     */
+    public void addRow()
+    {
+        DefaultTableModel model = (DefaultTableModel) tblList.getModel();
+        Object rowData [] = new Object[4];
+        int lastPos = DataControl.gameList.size()-1;
+        rowData[0]= DataControl.gameList.get(lastPos).getTitle();
+        rowData[1]= DataControl.gameList.get(lastPos).getGameConsole();
+        rowData[2]= DataControl.gameList.get(lastPos).getCompany();
+        rowData[3]= DataControl.gameList.get(lastPos).getReleaseDate();
+        model.addRow(rowData);
+    }
+    
+    /**
+     * Limpia la tabla.
+     */
+    public void clearTable()
+    {
+        DefaultTableModel model = (DefaultTableModel) tblList.getModel();
+        model.setRowCount(0);
     }
     
     /**
@@ -88,8 +122,8 @@ public class MainWindow extends javax.swing.JFrame {
         tblList = new javax.swing.JTable();
         imgGameCase = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        mnuAddVideogame = new javax.swing.JMenu();
+        mnuErase = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         btnOff = new javax.swing.JMenu();
@@ -163,26 +197,26 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 255));
         jMenuBar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/cross.png"))); // NOI18N
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        mnuAddVideogame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/cross.png"))); // NOI18N
+        mnuAddVideogame.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+                mnuAddVideogameMouseClicked(evt);
             }
         });
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        mnuAddVideogame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                mnuAddVideogameActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnuAddVideogame);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/minus.png"))); // NOI18N
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        mnuErase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/minus.png"))); // NOI18N
+        mnuErase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenu2MousePressed(evt);
+                mnuEraseMousePressed(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mnuErase);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/floppyPixel.png"))); // NOI18N
         jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -238,24 +272,24 @@ public class MainWindow extends javax.swing.JFrame {
         SaveData sd = new SaveData();
     }//GEN-LAST:event_jMenu3MousePressed
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    private void mnuAddVideogameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAddVideogameActionPerformed
         
-    }//GEN-LAST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_mnuAddVideogameActionPerformed
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-       AddElement ae = new AddElement();
-        setVisible(false);
-    }//GEN-LAST:event_jMenu1MouseClicked
+    private void mnuAddVideogameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAddVideogameMouseClicked
+        AddVideogame ae = new AddVideogame();
+        //setVisible(false);
+    }//GEN-LAST:event_mnuAddVideogameMouseClicked
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
        
     }//GEN-LAST:event_jMenu4MouseClicked
 
-    private void jMenu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MousePressed
-        setVisible(false);
+    private void mnuEraseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuEraseMousePressed
+        //setVisible(false);
         EraseData ed = new EraseData(this,true);
         
-    }//GEN-LAST:event_jMenu2MousePressed
+    }//GEN-LAST:event_mnuEraseMousePressed
 
     private void btnOffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOffMouseClicked
         if (DataControl.saved)
@@ -277,6 +311,7 @@ public class MainWindow extends javax.swing.JFrame {
                 return char1-char2;
             }
         });
+        DataControl.recordChanged=true;
     }//GEN-LAST:event_btnSortMouseClicked
 
 
@@ -284,8 +319,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu btnOff;
     private javax.swing.JMenu btnSort;
     private javax.swing.JLabel imgGameCase;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -294,6 +327,30 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenu mnuAddVideogame;
+    private javax.swing.JMenu mnuErase;
     private javax.swing.JTable tblList;
     // End of variables declaration//GEN-END:variables
+
+    
+    //==================TIMER=========================
+    public void startTimer()
+    {
+        /*Inicialización del tiempo*/
+        timer = new Timer (DELAY,this); //Investigar el timer.
+        timer.start();
+    }
+            
+    @Override
+    public void actionPerformed(ActionEvent ae) 
+    {
+        if (DataControl.refresh){
+            clearTable();
+        }
+        if (DataControl.recordChanged)
+        {
+            addRow();
+            DataControl.recordChanged=false;
+        }
+    }
 }

@@ -13,6 +13,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle(AppInfo.name);
+        setIconImage(WindowControl.appIcon.getImage());
         txtError.setVisible(false);
         setResizable(false);
         setVisible(true);

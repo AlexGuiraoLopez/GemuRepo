@@ -13,5 +13,11 @@ public class DataControl
 {
     public static ArrayList<Videogame> gameList=VideogameFileControl.read();
     public static ArrayList<User> userList = UserFileControl.read();
-    public static boolean saved=true;
+    
+    public static boolean saved=true; //Los datos más recientes están guardados en el archivo binario.
+    public static boolean recordChanged=false; //Se ha producido algún cambio en un registro de la lista.
+    
+    /*Se ha actualizado toda la lista de datos. */
+    public static boolean refresh=false; 
+    
 }

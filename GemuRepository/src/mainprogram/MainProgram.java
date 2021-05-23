@@ -1,7 +1,7 @@
 package mainprogram;
 
 import visualfront.Login;
-import visualfront.AddElement;
+import visualfront.AddVideogame;
 import visualfront.MainWindow;
 import visualfront.TrialFrame;
 
@@ -12,8 +12,7 @@ public class MainProgram
 {
     public static void main(String[] args) 
     {
-        //new TrialFrame();
-        //MainWindow mw = new MainWindow();
-        new Login();
+        MainWindow mw = new MainWindow();
+        //new Login();
     }
 }

@@ -14,14 +14,15 @@ import datacontrol.DataControl;
  * Investigar sobre JDialog.
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
  */
-public class AddElement extends javax.swing.JFrame {
+public class AddVideogame extends javax.swing.JFrame {
 
     private static int counter=0;
     
-    public AddElement() 
+    public AddVideogame() 
     {
         initComponents();
         setTitle(AppInfo.name);
+        setIconImage(WindowControl.appIcon.getImage());
         setVisible(true);
         setLocationRelativeTo(null);
     }
@@ -215,7 +216,6 @@ public class AddElement extends javax.swing.JFrame {
     
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         setVisible(false);
-        new MainWindow();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
@@ -232,15 +232,19 @@ public class AddElement extends javax.swing.JFrame {
         
         DataControl.gameList.add(new Videogame(title, company, gameConsole, new Date (year,month,day)));
         DataControl.saved=false;
+        DataControl.recordChanged=true;
+        
+        /*
         txtTitle.setText("");
         txtCompany.setText("");
         txtGameConsole.setText("");
         txtDay.setText("");
         txtYear.setText("");
         txtMonth.setText("");
-        
-        MainWindow mw = new MainWindow();
+        */
+        //MainWindow mw = new MainWindow();
         setVisible(false);
+        
         //DEBUG
         System.out.println(ConsoleColors.GREEN+"¡El videojuego se registró con éxito!");
         showList();
