@@ -96,7 +96,7 @@ public class EraseData extends javax.swing.JDialog {
     private void btnYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYesActionPerformed
         VideogameFileControl.delete();
         DataControl.gameList.clear();
-        DataControl.refresh=true;
+        DataControl.clear=true;
         setVisible(false);
     }//GEN-LAST:event_btnYesActionPerformed
 

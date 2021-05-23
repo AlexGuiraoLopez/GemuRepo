@@ -17,7 +17,7 @@ public class DataControl
     public static boolean saved=true; //Los datos más recientes están guardados en el archivo binario.
     public static boolean recordChanged=false; //Se ha producido algún cambio en un registro de la lista.
     
-    /*Se ha actualizado toda la lista de datos. */
-    public static boolean refresh=false; 
+    public static boolean clear=false;  //Se han eliminado las filas de la tabla.
+    public static boolean refresh=false; //La tabla se ha actualizado.
     
 }

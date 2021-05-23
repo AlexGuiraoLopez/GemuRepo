@@ -86,6 +86,9 @@ public class Videogame
         return image;
     }
     
+    public int getYear(){
+        return this.releaseDate.getYear();
+    }
     
     
     

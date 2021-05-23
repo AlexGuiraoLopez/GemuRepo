@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import videogame.Videogame;
+import time.Time;
 
 /**
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
@@ -127,7 +128,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         btnOff = new javax.swing.JMenu();
-        btnSort = new javax.swing.JMenu();
+        mnuSort = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -242,13 +243,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         });
         jMenuBar1.add(btnOff);
 
-        btnSort.setText("Sort");
-        btnSort.addMouseListener(new java.awt.event.MouseAdapter() {
+        mnuSort.setText("Sort");
+        mnuSort.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSortMouseClicked(evt);
+                mnuSortMouseClicked(evt);
             }
         });
-        jMenuBar1.add(btnSort);
+        jMenuBar1.add(mnuSort);
 
         setJMenuBar(jMenuBar1);
 
@@ -300,8 +301,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         }
     }//GEN-LAST:event_btnOffMouseClicked
 
-    private void btnSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSortMouseClicked
-        DataControl.gameList.sort(new Comparator<Videogame>()
+    private void mnuSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSortMouseClicked
+        /*DataControl.gameList.sort(new Comparator<Videogame>()
         {
             @Override
             public int compare(Videogame t, Videogame t1) 
@@ -311,13 +312,15 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
                 return char1-char2;
             }
         });
-        DataControl.recordChanged=true;
-    }//GEN-LAST:event_btnSortMouseClicked
+        DataControl.clear=true;
+        new ExtraWindow(this,true);
+        */
+        new OrderBy(this,true);
+    }//GEN-LAST:event_mnuSortMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu btnOff;
-    private javax.swing.JMenu btnSort;
     private javax.swing.JLabel imgGameCase;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -329,6 +332,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu mnuAddVideogame;
     private javax.swing.JMenu mnuErase;
+    private javax.swing.JMenu mnuSort;
     private javax.swing.JTable tblList;
     // End of variables declaration//GEN-END:variables
 
@@ -344,13 +348,21 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent ae) 
     {
-        if (DataControl.refresh){
+        if (DataControl.clear)
+        {
             clearTable();
         }
+        
         if (DataControl.recordChanged)
         {
             addRow();
             DataControl.recordChanged=false;
+        }
+        
+        if (DataControl.refresh)
+        {
+            fillTable();
+            DataControl.refresh=false;
         }
     }
 }

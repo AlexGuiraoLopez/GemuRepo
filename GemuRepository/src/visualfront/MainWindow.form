@@ -84,12 +84,12 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnOffMouseClicked"/>
           </Events>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="btnSort">
+        <Menu class="javax.swing.JMenu" name="mnuSort">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sort"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSortMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mnuSortMouseClicked"/>
           </Events>
         </Menu>
       </SubComponents>
