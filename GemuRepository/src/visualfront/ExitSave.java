@@ -84,10 +84,11 @@ public class ExitSave extends javax.swing.JDialog {
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton3)
+                        .addComponent(jButton2)))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 

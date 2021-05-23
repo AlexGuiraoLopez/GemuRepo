@@ -12,7 +12,8 @@ public class MainProgram
 {
     public static void main(String[] args) 
     {
-        //MainWindow mw = new MainWindow();
-        new Login();
+        //new TrialFrame();
+        MainWindow mw = new MainWindow();
+        //new Login();
     }
 }

@@ -1,23 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package visualfront;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
- *
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
  */
 public class TrialFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TrialFrame
-     */
+  
     public TrialFrame() {
         initComponents();
         setLocationRelativeTo(null);
-        setVisible(true);
+        
     }
 
     /**
@@ -29,27 +24,34 @@ public class TrialFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        btn1 = new javax.swing.JButton();
+        btn2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/loading.gif"))); // NOI18N
+        btn1.setText("jButton1");
+
+        btn2.setText("jButton2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(jLabel1)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addGap(220, 220, 220)
+                .addComponent(btn1)
+                .addGap(171, 171, 171)
+                .addComponent(btn2)
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(115, 115, 115))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(181, 181, 181)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn1)
+                    .addComponent(btn2))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         pack();
@@ -57,6 +59,7 @@ public class TrialFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btn1;
+    private javax.swing.JButton btn2;
     // End of variables declaration//GEN-END:variables
 }

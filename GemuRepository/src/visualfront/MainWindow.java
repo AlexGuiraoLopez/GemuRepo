@@ -127,8 +127,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         mnuErase = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        btnOff = new javax.swing.JMenu();
         mnuSort = new javax.swing.JMenu();
+        mnuOff = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -174,7 +174,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
             tblList.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        imgGameCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/splatoon2.jpg"))); // NOI18N
+        imgGameCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/splatoon2.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,7 +198,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 255));
         jMenuBar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
-        mnuAddVideogame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/cross.png"))); // NOI18N
+        mnuAddVideogame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cross.png"))); // NOI18N
         mnuAddVideogame.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mnuAddVideogameMouseClicked(evt);
@@ -211,7 +211,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         });
         jMenuBar1.add(mnuAddVideogame);
 
-        mnuErase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/minus.png"))); // NOI18N
+        mnuErase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minus.png"))); // NOI18N
         mnuErase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 mnuEraseMousePressed(evt);
@@ -219,7 +219,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         });
         jMenuBar1.add(mnuErase);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/floppyPixel.png"))); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/floppyPixel.png"))); // NOI18N
         jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jMenu3MousePressed(evt);
@@ -227,7 +227,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         });
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/data.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/data.png"))); // NOI18N
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu4MouseClicked(evt);
@@ -235,21 +235,21 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         });
         jMenuBar1.add(jMenu4);
 
-        btnOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visualfront/off.png"))); // NOI18N
-        btnOff.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnOffMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(btnOff);
-
-        mnuSort.setText("Sort");
+        mnuSort.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sort.png"))); // NOI18N
         mnuSort.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mnuSortMouseClicked(evt);
             }
         });
         jMenuBar1.add(mnuSort);
+
+        mnuOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/off.png"))); // NOI18N
+        mnuOff.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuOffMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnuOff);
 
         setJMenuBar(jMenuBar1);
 
@@ -292,14 +292,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         
     }//GEN-LAST:event_mnuEraseMousePressed
 
-    private void btnOffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOffMouseClicked
+    private void mnuOffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuOffMouseClicked
         if (DataControl.saved)
         {
             System.exit(100);
         }else{
             new ExitSave(this,true);
         }
-    }//GEN-LAST:event_btnOffMouseClicked
+    }//GEN-LAST:event_mnuOffMouseClicked
 
     private void mnuSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSortMouseClicked
         /*DataControl.gameList.sort(new Comparator<Videogame>()
@@ -320,7 +320,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu btnOff;
     private javax.swing.JLabel imgGameCase;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -332,6 +331,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu mnuAddVideogame;
     private javax.swing.JMenu mnuErase;
+    private javax.swing.JMenu mnuOff;
     private javax.swing.JMenu mnuSort;
     private javax.swing.JTable tblList;
     // End of variables declaration//GEN-END:variables

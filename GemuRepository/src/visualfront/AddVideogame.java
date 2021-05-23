@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import date.Date;
 import videogame.Videogame;
 import datacontrol.DataControl;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 /**
  * Investigar sobre JDialog.
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
@@ -23,8 +25,13 @@ public class AddVideogame extends javax.swing.JFrame {
         initComponents();
         setTitle(AppInfo.name);
         setIconImage(WindowControl.appIcon.getImage());
-        setVisible(true);
+           ImageIcon ic = new ImageIcon("assets/bckgImage/particleBackground.jpg");
+        JLabel background = new JLabel("",ic,JLabel.CENTER);
+        background.setBounds(0,0,1200,500);
+        add(background);
+        
         setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     public void showList()
