@@ -21,6 +21,7 @@ public class AddUser extends javax.swing.JDialog {
     public AddUser(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        txtError.setVisible(false);
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -152,6 +153,7 @@ public class AddUser extends javax.swing.JDialog {
                 UserFileControl.write(DataControl.userList);
                 setVisible(false);
             }else{
+                txtError.setVisible(true);
                 txtError.setText("Password doesn't match.");
             }
         }
@@ -164,6 +166,7 @@ public class AddUser extends javax.swing.JDialog {
         {
             if (u.getUsername().equals(txtUsername.getText()))
             {
+                txtError.setVisible(true);
                 txtError.setText("User already exists");
                 error=true;
             }

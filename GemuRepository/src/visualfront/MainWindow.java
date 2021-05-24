@@ -15,9 +15,6 @@ import javax.swing.Timer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumnModel;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
 import videogame.Videogame;
 import time.Time;
 
@@ -39,7 +36,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         initComponents();
         //Cambia el renderer de la tabla para colorear las filas segun el estado del videojuego.
         tblList.setDefaultRenderer(tblList.getColumnClass(0), rc); 
-        
         setTitle(AppInfo.name);
         setIconImage(WindowControl.appIcon.getImage());
         setLocationRelativeTo(null);
@@ -182,7 +178,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
             tblList.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        imgGameCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/splatoon2.jpg"))); // NOI18N
+        imgGameCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mainImage.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -358,6 +354,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         if (DataControl.clear)
         {
             clearTable();
+            DataControl.clear=false;
         }
         
         if (DataControl.recordChanged)
