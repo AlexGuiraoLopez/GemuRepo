@@ -2,6 +2,7 @@ package visualfront;
 
 import appinfo.AppInfo;
 import datacontrol.DataControl;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
 import videogame.Videogame;
 import time.Time;
 
@@ -24,16 +26,20 @@ import time.Time;
  */
 public class MainWindow extends javax.swing.JFrame implements ActionListener
 {
-
     Timer timer;
     private static final int DELAY=60;
-
+ 
+    RowColor rc = new RowColor(); //Renderer personalizado para las propiedades de la tabla.
+    
     /**
      * Creates new form MainWindow
      */
     public MainWindow() 
     {
         initComponents();
+        //Cambia el renderer de la tabla para colorear las filas segun el estado del videojuego.
+        tblList.setDefaultRenderer(tblList.getColumnClass(0), rc); 
+        
         setTitle(AppInfo.name);
         setIconImage(WindowControl.appIcon.getImage());
         setLocationRelativeTo(null);
@@ -59,6 +65,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
             rowData[2]= DataControl.gameList.get(i).getCompany();
             rowData[3]= DataControl.gameList.get(i).getReleaseDate();
             model.addRow(rowData);
+            
             DataControl.recordChanged=false;
         }
     }
@@ -126,7 +133,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         mnuAddVideogame = new javax.swing.JMenu();
         mnuErase = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        mnuStatistics = new javax.swing.JMenu();
         mnuSort = new javax.swing.JMenu();
         mnuOff = new javax.swing.JMenu();
 
@@ -150,7 +157,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -168,6 +175,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         tblList.setRowHeight(25);
         jScrollPane2.setViewportView(tblList);
         if (tblList.getColumnModel().getColumnCount() > 0) {
+            tblList.getColumnModel().getColumn(0).setResizable(false);
             tblList.getColumnModel().getColumn(0).setPreferredWidth(200);
             tblList.getColumnModel().getColumn(1).setResizable(false);
             tblList.getColumnModel().getColumn(2).setResizable(false);
@@ -227,13 +235,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         });
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/data.png"))); // NOI18N
-        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+        mnuStatistics.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/data.png"))); // NOI18N
+        mnuStatistics.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu4MouseClicked(evt);
+                mnuStatisticsMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(mnuStatistics);
 
         mnuSort.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sort.png"))); // NOI18N
         mnuSort.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -281,9 +289,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
        AddVideogame av = new AddVideogame(this, true);
     }//GEN-LAST:event_mnuAddVideogameMouseClicked
 
-    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-       
-    }//GEN-LAST:event_jMenu4MouseClicked
+    private void mnuStatisticsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuStatisticsMouseClicked
+       new Statistics(this, true);
+    }//GEN-LAST:event_mnuStatisticsMouseClicked
 
     private void mnuEraseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuEraseMousePressed
         //setVisible(false);
@@ -321,7 +329,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgGameCase;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -332,6 +339,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     private javax.swing.JMenu mnuErase;
     private javax.swing.JMenu mnuOff;
     private javax.swing.JMenu mnuSort;
+    private javax.swing.JMenu mnuStatistics;
     private javax.swing.JTable tblList;
     // End of variables declaration//GEN-END:variables
 

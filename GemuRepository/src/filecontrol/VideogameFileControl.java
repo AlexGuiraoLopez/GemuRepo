@@ -7,6 +7,7 @@ import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import date.Date;
+import sun.security.jgss.GSSToken;
 import videogame.Videogame;
 import visualfront.ConsoleColors;
 
@@ -35,6 +36,7 @@ public class VideogameFileControl
                 raf.writeInt(v.getReleaseDate().getYear());
                 raf.writeInt(v.getReleaseDate().getMonth());
                 raf.writeInt(v.getReleaseDate().getDay());
+                raf.writeInt(v.getCompleted());
             }
             
             raf.close();
@@ -59,6 +61,7 @@ public class VideogameFileControl
             int year;
             int month;
             int day;
+            int completed;
 
             RandomAccessFile raf;
             try {
@@ -80,7 +83,9 @@ public class VideogameFileControl
                     month=raf.readInt();
                     day=raf.readInt();
 
-                    list.add(new Videogame(title,company,gameConsole,new Date(year,month,day)));
+                    completed = raf.readInt();
+                    
+                    list.add(new Videogame(title,company,gameConsole,new Date(year,month,day),completed));
                 }
 
                 raf.close();

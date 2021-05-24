@@ -13,10 +13,11 @@ public class Videogame
     private String company;
     private String gameConsole;
     private Date releaseDate;
-    private boolean completed;
+    private int completed;
     private String image;
     
-    public Videogame(String title, String company, String gameConsole, Date releaseDate) {
+    public Videogame(String title, String company, String gameConsole, Date releaseDate, int completed) 
+    {
         if (title.length()<=TITLE_MAX_LENGTH){
             this.title = title;
         }else{
@@ -34,6 +35,8 @@ public class Videogame
         }else{
             this.gameConsole=gameConsole.substring(0, GAME_CONSOLE_MAX_LENGTH);
         }
+        
+        this.completed=completed;
         
         this.image=title.toLowerCase()+".jpg";
         this.releaseDate = releaseDate;
@@ -53,7 +56,7 @@ public class Videogame
      * @return tamaño de un registro.
      */
     public static int getRecordSize(){
-        return TITLE_MAX_LENGTH+COMPANY_MAX_LENGTH+GAME_CONSOLE_MAX_LENGTH+(Integer.BYTES*3);
+        return TITLE_MAX_LENGTH+COMPANY_MAX_LENGTH+GAME_CONSOLE_MAX_LENGTH+(Integer.BYTES*4);
     }
     
     public String getFormattedTitle(){
@@ -91,7 +94,9 @@ public class Videogame
         return this.releaseDate.getYear();
     }
     
-    
+    public int getCompleted(){
+        return this.completed;
+    }
     
     
 }

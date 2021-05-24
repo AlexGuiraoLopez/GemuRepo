@@ -26,11 +26,11 @@ public class AddVideogame extends javax.swing.JDialog {
         initComponents();
         setTitle(AppInfo.name + " - Add Videogame");
         setIconImage(WindowControl.appIcon.getImage());
-        ImageIcon ic = new ImageIcon("assets/bckgImage/particleBackground.jpg");
-        JLabel background = new JLabel("",ic,JLabel.CENTER);
+        ImageIcon backgroundImage = new ImageIcon("assets/bckgImage/particleBackground.jpg");
+        JLabel background = new JLabel("",backgroundImage,JLabel.CENTER);
         background.setBounds(0,0,1200,500);
         add(background);
-        
+        setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -217,21 +217,24 @@ public class AddVideogame extends javax.swing.JDialog {
         int year=Integer.parseInt(txtYear.getText());
         int month=Integer.parseInt(txtMonth.getText());
         int day=Integer.parseInt(txtDay.getText());
-        
-        DataControl.gameList.add(new Videogame(title, company, gameConsole, new Date (year,month,day)));
+        int completed=0;
+        if (chkCompleted.isSelected())
+        {
+            completed=1; //Investigar para guardar valores boolean en un archivo binario (apaño con integer = 1).
+        }
+                
+        DataControl.gameList.add(new Videogame(title, company, gameConsole, new Date (year,month,day),completed));
         DataControl.saved=false;
         DataControl.recordChanged=true;
         
-        /*
+        //Resetea los campos para añadir otro videojuego sin tener que cerrar la ventana.
         txtTitle.setText("");
         txtCompany.setText("");
         txtGameConsole.setText("");
         txtDay.setText("");
         txtYear.setText("");
         txtMonth.setText("");
-        */
-        //MainWindow mw = new MainWindow();
-        setVisible(false);
+        chkCompleted.setSelected(false);
         
         //DEBUG
         System.out.println(ConsoleColors.GREEN+"¡El videojuego se registró con éxito!");
