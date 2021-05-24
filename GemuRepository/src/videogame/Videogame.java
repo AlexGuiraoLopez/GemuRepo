@@ -5,14 +5,15 @@ import date.Date;
  */
 public class Videogame 
 {
-    public final static int TITLE_MAX_LENGTH=25;
+    public final static int TITLE_MAX_LENGTH=40;
     public final static int COMPANY_MAX_LENGTH=15;
-    public final static int GAME_CONSOLE_MAX_LENGTH=10;
+    public final static int GAME_CONSOLE_MAX_LENGTH=15;
     
     private String title;
     private String company;
     private String gameConsole;
     private Date releaseDate;
+    private boolean completed;
     private String image;
     
     public Videogame(String title, String company, String gameConsole, Date releaseDate) {

@@ -168,7 +168,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         tblList.setRowHeight(25);
         jScrollPane2.setViewportView(tblList);
         if (tblList.getColumnModel().getColumnCount() > 0) {
-            tblList.getColumnModel().getColumn(0).setResizable(false);
+            tblList.getColumnModel().getColumn(0).setPreferredWidth(200);
             tblList.getColumnModel().getColumn(1).setResizable(false);
             tblList.getColumnModel().getColumn(2).setResizable(false);
             tblList.getColumnModel().getColumn(3).setResizable(false);
@@ -278,8 +278,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     }//GEN-LAST:event_mnuAddVideogameActionPerformed
 
     private void mnuAddVideogameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAddVideogameMouseClicked
-        AddVideogame ae = new AddVideogame();
-        //setVisible(false);
+       AddVideogame av = new AddVideogame(this, true);
     }//GEN-LAST:event_mnuAddVideogameMouseClicked
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
@@ -315,7 +314,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         DataControl.clear=true;
         new ExtraWindow(this,true);
         */
-        new OrderBy(this,true);
+        new SortBy(this,true);
     }//GEN-LAST:event_mnuSortMouseClicked
 
 

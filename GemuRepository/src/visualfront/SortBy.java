@@ -4,20 +4,24 @@ import datacontrol.DataControl;
 import java.awt.Color;
 import java.util.Comparator;
 import videogame.Videogame;
+import appinfo.AppInfo;
 
 /**
  *
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
  */
-public class OrderBy extends javax.swing.JDialog {
+public class SortBy extends javax.swing.JDialog {
 
+    private boolean sorted=false;
+    
     /**
      * Creates new form OrderBy
      */
-    public OrderBy(java.awt.Frame parent, boolean modal) 
+    public SortBy(java.awt.Frame parent, boolean modal) 
     {
         super(parent, modal);
         initComponents();
+        setTitle("Sort By");
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -40,6 +44,7 @@ public class OrderBy extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        btnCompany.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnCompany.setText("Company");
         btnCompany.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -47,6 +52,7 @@ public class OrderBy extends javax.swing.JDialog {
             }
         });
 
+        btnConsole.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnConsole.setText("Console");
         btnConsole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +60,7 @@ public class OrderBy extends javax.swing.JDialog {
             }
         });
 
+        btnTitle.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnTitle.setText("Title");
         btnTitle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +68,7 @@ public class OrderBy extends javax.swing.JDialog {
             }
         });
 
+        btnYear.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnYear.setText("Year");
         btnYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,9 +76,10 @@ public class OrderBy extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel1.setText("Order By:");
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel1.setText("Sort By");
 
+        btnApply.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnApply.setText("Apply");
         btnApply.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,19 +96,18 @@ public class OrderBy extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCompany, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnConsole, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(btnApply, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnApply, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,7 +117,7 @@ public class OrderBy extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCompany)
                             .addComponent(btnYear)))
@@ -120,7 +128,7 @@ public class OrderBy extends javax.swing.JDialog {
                             .addComponent(btnConsole))))
                 .addGap(18, 18, 18)
                 .addComponent(btnApply)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,6 +145,8 @@ public class OrderBy extends javax.swing.JDialog {
                 return char1-char2;
             }
         });
+        
+        sorted=true;
         DataControl.clear=true;
         
         btnTitle.setBackground(Color.green);
@@ -156,6 +166,8 @@ public class OrderBy extends javax.swing.JDialog {
                 return char1-char2;
             }
         });
+        
+        sorted=true;
         DataControl.clear=true;
         
         btnTitle.setBackground(null);
@@ -175,6 +187,8 @@ public class OrderBy extends javax.swing.JDialog {
                 return char1-char2;
             }
         });
+        
+        sorted=true;
         DataControl.clear=true;
         
         btnTitle.setBackground(null);
@@ -194,6 +208,8 @@ public class OrderBy extends javax.swing.JDialog {
                 return year-year1;
             }
         });
+        
+        sorted=true;
         DataControl.clear=true;
         
         btnTitle.setBackground(null);
@@ -203,8 +219,12 @@ public class OrderBy extends javax.swing.JDialog {
     }//GEN-LAST:event_btnYearActionPerformed
 
     private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
-        DataControl.clear=false;
-        DataControl.refresh=true;
+       if (sorted)
+       {
+            DataControl.clear=false;
+            DataControl.refresh=true;
+       }
+        
         setVisible(false);
     }//GEN-LAST:event_btnApplyActionPerformed
 
