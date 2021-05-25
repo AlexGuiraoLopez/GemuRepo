@@ -36,7 +36,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         initComponents();
         //Cambia el renderer de la tabla para colorear las filas segun el estado del videojuego.
         tblList.setDefaultRenderer(tblList.getColumnClass(0), rc); 
-        setTitle(AppInfo.name);
+        setTitle(AppInfo.NAME);
         setIconImage(WindowControl.appIcon.getImage());
         setLocationRelativeTo(null);
         setVisible(true);
@@ -44,7 +44,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         listenTableRows();
         setResizable(false);
         startTimer();
-        
     }
     
     /**
@@ -88,6 +87,15 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     {
         DefaultTableModel model = (DefaultTableModel) tblList.getModel();
         model.setRowCount(0);
+    }
+    
+    /**
+     * Actualiza la tabla para que coincida con los datos de la lista actuales.
+     */
+    public void refreshTable()
+    {
+        DataControl.refresh=true;
+        tblList.repaint();
     }
     
     /**
@@ -305,23 +313,15 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     }//GEN-LAST:event_mnuOffMouseClicked
 
     private void mnuSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSortMouseClicked
-        /*DataControl.gameList.sort(new Comparator<Videogame>()
-        {
-            @Override
-            public int compare(Videogame t, Videogame t1) 
-            {
-                int char1 = t.getTitle().charAt(0);
-                int char2 = t1.getTitle().charAt(0);
-                return char1-char2;
-            }
-        });
-        DataControl.clear=true;
-        new ExtraWindow(this,true);
-        */
+      
         new SortBy(this,true);
     }//GEN-LAST:event_mnuSortMouseClicked
-
-
+    /*
+    public JTable getTableList()
+    {
+        return tblList;
+    }
+    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgGameCase;
     private javax.swing.JMenu jMenu3;

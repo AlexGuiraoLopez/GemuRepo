@@ -1,7 +1,6 @@
 package mainprogram;
 
 import visualfront.Login;
-import visualfront.AddVideogame;
 import visualfront.MainWindow;
 import visualfront.TrialFrame;
 

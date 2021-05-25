@@ -13,14 +13,15 @@ import appinfo.AppInfo;
 public class SortBy extends javax.swing.JDialog {
 
     private boolean sorted=false;
-    
+    MainWindow mw;
     /**
      * Creates new form OrderBy
      */
-    public SortBy(java.awt.Frame parent, boolean modal) 
+    public SortBy(MainWindow parent, boolean modal) 
     {
         super(parent, modal);
         initComponents();
+        this.mw=parent;
         setTitle("Sort By");
         setLocationRelativeTo(null);
         setVisible(true);
@@ -80,7 +81,7 @@ public class SortBy extends javax.swing.JDialog {
         jLabel1.setText("Sort By");
 
         btnApply.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        btnApply.setText("Apply");
+        btnApply.setText("OK");
         btnApply.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnApplyActionPerformed(evt);
@@ -101,13 +102,11 @@ public class SortBy extends javax.swing.JDialog {
                     .addComponent(btnYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnConsole, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
                 .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnApply, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(btnApply, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -153,6 +152,8 @@ public class SortBy extends javax.swing.JDialog {
         btnConsole.setBackground(null);
         btnCompany.setBackground(null);
         btnYear.setBackground(null);
+        
+        mw.refreshTable();
     }//GEN-LAST:event_btnTitleActionPerformed
 
     private void btnConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsoleActionPerformed
@@ -174,6 +175,8 @@ public class SortBy extends javax.swing.JDialog {
         btnConsole.setBackground(Color.green);
         btnCompany.setBackground(null);
         btnYear.setBackground(null);
+        
+        mw.refreshTable();
     }//GEN-LAST:event_btnConsoleActionPerformed
 
     private void btnCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompanyActionPerformed
@@ -195,6 +198,8 @@ public class SortBy extends javax.swing.JDialog {
         btnConsole.setBackground(null);
         btnCompany.setBackground(Color.green);
         btnYear.setBackground(null);
+        
+        mw.refreshTable();
     }//GEN-LAST:event_btnCompanyActionPerformed
 
     private void btnYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYearActionPerformed
@@ -216,6 +221,8 @@ public class SortBy extends javax.swing.JDialog {
         btnConsole.setBackground(null);
         btnCompany.setBackground(null);
         btnYear.setBackground(Color.green);
+        
+        mw.refreshTable();
     }//GEN-LAST:event_btnYearActionPerformed
 
     private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed

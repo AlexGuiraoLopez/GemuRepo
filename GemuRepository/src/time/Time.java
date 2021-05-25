@@ -5,10 +5,11 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author (oriolholguint@gmail.com)
+ * @author Alex Guirao López <aguiraol2021@cepnet.com>
  */
 public class Time 
 {
+    
     /***
      * Este metodo genera una pausa en la ejecucion del codigo indicado previamente por el usuario en milisegundos
      * @param _time Tiempo que espera el codigo para seguir ejecutandose 

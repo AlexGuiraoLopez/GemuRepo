@@ -27,8 +27,13 @@ Tecnologías utilizadas:
 => Programado en Java utilizando JSwing para la GUI.
 
 
-Fecha de inicio 20/05/2021
+Observaciones:
+=> Para vincular la imagen de un videojuego cuando lo añadimos a la lista, dicha imagen tiene que estar en assets/caseImage
+y tiene que tener el nombre de archivo equivalente al título del juego que se introduce.
+
 
 Versión 1.0 (24/05/2021)
+
+Fecha de inicio del proyecto 20/05/2021
 
 Contacto para informar de errores: aguiraol2021@cepnet.net

@@ -14,7 +14,7 @@ public class Login extends javax.swing.JFrame {
     {
         initComponents();
         setLocationRelativeTo(null);
-        setTitle(AppInfo.name);
+        setTitle(AppInfo.NAME);
         setIconImage(WindowControl.appIcon.getImage());
         ImageIcon backgroundImage = new ImageIcon("assets/bckgImage/arcadeMachineBackground.jpg");
         JLabel background = new JLabel("",backgroundImage,JLabel.CENTER);

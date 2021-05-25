@@ -1,5 +1,7 @@
 package user;
+
 /** 
+ * Información sobre los usuarios que se registran al programa.
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
  */
 public class User 
@@ -30,8 +32,6 @@ public class User
     public String getEmail() {
         return email;
     }
-    
-    
     
     public static int getRecordSize(){
         return MAX_NAME_LENGTH+MAX_PASSWORD_LENGTH+MAX_EMAIL_LENGTH;

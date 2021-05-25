@@ -24,7 +24,7 @@ public class AddVideogame extends javax.swing.JDialog {
     {
         super(parent, modal);
         initComponents();
-        setTitle(AppInfo.name + " - Add Videogame");
+        setTitle(AppInfo.NAME + " - Add Videogame");
         setIconImage(WindowControl.appIcon.getImage());
         ImageIcon backgroundImage = new ImageIcon("assets/bckgImage/particleBackground.jpg");
         JLabel background = new JLabel("",backgroundImage,JLabel.CENTER);

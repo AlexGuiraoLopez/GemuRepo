@@ -3,6 +3,8 @@ package date;
 import visualfront.ConsoleColors;
 
 /** 
+ * Define fechas.
+ * Las muestra en formato (año/mes/día)
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
  */
 public class Date 

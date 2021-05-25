@@ -11,16 +11,26 @@ import videogame.Videogame;
 import visualfront.ConsoleColors;
 
 /** 
+ * Libreria para controlar la comunicación con el archivo binario que da persistencia de datos
+ * para los videojuegos que el usuario introduce.
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
  */
 public class VideogameFileControl 
 {
     public final static String PATH="datafiles/videogame.bin";
 
-    public static int getRecordAmount(){
+    /**
+    * @return cantidad de registros de videojuegos que hay en el archivo binario. 
+    */
+    public static int getRecordAmount()
+    {
         return (int)new File(PATH).length()/Videogame.getRecordSize();
     }
     
+    /**
+    * Escribe una lista local hacia el archivo binario para que se mantenga al iniciar de nuevo el programa.
+    * @param list lista de videojuegos a escribir.
+    */
     public static void write(ArrayList<Videogame> list){
         File file = new File(PATH);
         
@@ -46,7 +56,12 @@ public class VideogameFileControl
         }
     }
 
-    public static ArrayList<Videogame> read(){
+    /**
+    * Lee el archivo binario de videojuegos y retorna una lista local para trabajar dentro del programa
+    * @return lista de videojuegos con los datos del archivo binario.
+    */
+    public static ArrayList<Videogame> read()
+    {
         ArrayList <Videogame> list = new ArrayList<Videogame>();
         
         File file = new File(PATH);
@@ -99,6 +114,9 @@ public class VideogameFileControl
         return list;
     }
 
+    /**
+     * Elimina los datos del archivo binario de videojuegos.
+     */
     public static void delete()
     {
         File file = new File(PATH);

@@ -7,10 +7,16 @@ import user.User;
 import videogame.Videogame;
 
 /** 
+ * Librería con las variables de control que se utilizan en distintas clases del programa.
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
  */
 public class DataControl 
 {
+    /*Listas locales para trabajar dentro del programa. 
+     *Los datos no se guardan en el archivo binario sin que el usuario seleccione la opción de guardado.
+     *Al iniciar el programa, los datos de los archivos binarios son transferidos a las listas locales para
+     *trabajar con ellas durante la ejecución del programa.
+    */
     public static ArrayList<Videogame> gameList=VideogameFileControl.read();
     public static ArrayList<User> userList = UserFileControl.read();
     
