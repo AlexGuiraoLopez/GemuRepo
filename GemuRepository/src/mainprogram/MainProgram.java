@@ -12,7 +12,7 @@ public class MainProgram
     public static void main(String[] args) 
     {
         //new TrialFrame();
-        //MainWindow mw = new MainWindow();
-        new Login();
+        MainWindow mw = new MainWindow();
+        //new Login();
     }
 }

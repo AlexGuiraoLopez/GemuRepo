@@ -25,7 +25,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
 {
     Timer timer;
     private static final int DELAY=60;
- 
+    int selectedRow=-1; //Número de fila seleccionada.
+    
     RowColor rc = new RowColor(); //Renderer personalizado para las propiedades de la tabla.
     
     /**
@@ -80,6 +81,17 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         model.addRow(rowData);
     }
     
+    public void deleteRow()
+    {
+        if (selectedRow!=-1)
+        {
+            DataControl.gameList.remove(selectedRow);
+            DataControl.clear=true;
+            DataControl.refresh=true;
+            DataControl.saved=false;
+        }
+    }
+    
     /**
      * Limpia la tabla.
      */
@@ -111,7 +123,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
             {
                 if (!model.isSelectionEmpty())
                 {
-                    int selectedRow = model.getMinSelectionIndex();
+                    selectedRow = model.getMinSelectionIndex();
                     imgGameCase.setIcon(new ImageIcon("assets/caseImage/"+DataControl.gameList.get(selectedRow).getImage()));
                 }
             }
@@ -140,6 +152,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         mnuStatistics = new javax.swing.JMenu();
         mnuSort = new javax.swing.JMenu();
         mnuOff = new javax.swing.JMenu();
+        mnuDelete = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -263,6 +276,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         });
         jMenuBar1.add(mnuOff);
 
+        mnuDelete.setText("Delete One");
+        mnuDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuDeleteMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnuDelete);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -298,7 +319,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     }//GEN-LAST:event_mnuStatisticsMouseClicked
 
     private void mnuEraseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuEraseMousePressed
-        //setVisible(false);
         EraseData ed = new EraseData(this,true);
         
     }//GEN-LAST:event_mnuEraseMousePressed
@@ -316,6 +336,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
       
         new SortBy(this,true);
     }//GEN-LAST:event_mnuSortMouseClicked
+
+    private void mnuDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDeleteMouseClicked
+        deleteRow();
+    }//GEN-LAST:event_mnuDeleteMouseClicked
     /*
     public JTable getTableList()
     {
@@ -332,6 +356,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu mnuAddVideogame;
+    private javax.swing.JMenu mnuDelete;
     private javax.swing.JMenu mnuErase;
     private javax.swing.JMenu mnuOff;
     private javax.swing.JMenu mnuSort;

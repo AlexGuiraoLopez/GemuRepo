@@ -13,9 +13,9 @@ import videogame.Videogame;
 public class DataControl 
 {
     /*Listas locales para trabajar dentro del programa. 
-     *Los datos no se guardan en el archivo binario sin que el usuario seleccione la opción de guardado.
-     *Al iniciar el programa, los datos de los archivos binarios son transferidos a las listas locales para
-     *trabajar con ellas durante la ejecución del programa.
+    * Los datos no se guardan en el archivo binario sin que el usuario seleccione la opción de guardado.
+    * Al iniciar el programa, los datos de los archivos binarios son transferidos a las listas locales para
+    * trabajar con ellas durante la ejecución del programa.
     */
     public static ArrayList<Videogame> gameList=VideogameFileControl.read();
     public static ArrayList<User> userList = UserFileControl.read();
