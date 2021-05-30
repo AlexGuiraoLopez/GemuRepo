@@ -1,5 +1,6 @@
 package datacontrol;
 
+import database.Database;
 import filecontrol.UserFileControl;
 import filecontrol.VideogameFileControl;
 import java.util.ArrayList;
@@ -18,7 +19,8 @@ public class DataControl
     * trabajar con ellas durante la ejecución del programa.
     */
     public static ArrayList<Videogame> gameList=VideogameFileControl.read();
-    public static ArrayList<User> userList = UserFileControl.read();
+    //public static ArrayList<User> userList = UserFileControl.read();
+    public static ArrayList<User> userList;
     
     public static boolean saved=true; //Los datos más recientes están guardados en el archivo binario.
     public static boolean recordChanged=false; //Se ha producido algún cambio en un registro de la lista.

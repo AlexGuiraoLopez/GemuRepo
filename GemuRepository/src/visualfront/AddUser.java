@@ -5,9 +5,13 @@
  */
 package visualfront;
 
+import database.Database;
 import user.User;
 import datacontrol.DataControl;
 import filecontrol.UserFileControl;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -146,19 +150,32 @@ public class AddUser extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnRegisterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMousePressed
-        if (checkUsername()==false)
-        {
+        //if (checkUsername()==false)
+        //{
             if (txtPass.getText().equals(txtPass2.getText()))
             {
+                /*Registro de usuario en archivo binario
                 User u = new User(txtUsername.getText(), txtPass.getText(), txtEmail.getText());
                 DataControl.userList.add(u);
                 UserFileControl.write(DataControl.userList);
+                */
+                try {
+                    //Registro de usuario en base de datos
+                    Database db = new Database();
+                    User u = new User(txtUsername.getText(), txtPass.getText(), txtEmail.getText());
+                    db.insertNewUser(u);
+                    db.close();
+                } 
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(AddUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 setVisible(false);
             }else{
                 txtError.setVisible(true);
                 txtError.setText("Password doesn't match.");
             }
-        }
+        //}
     }//GEN-LAST:event_btnRegisterMousePressed
 
     private boolean  checkUsername() {
