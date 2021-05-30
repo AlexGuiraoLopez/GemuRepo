@@ -4,9 +4,13 @@
  * and open the template in the editor.
  */
 package visualfront;
+import database.Database;
 import time.Time;
 import datacontrol.DataControl;
 import filecontrol.VideogameFileControl;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -14,15 +18,15 @@ import javax.swing.JLabel;
  *
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
  */
-public class SaveData extends javax.swing.JFrame {
+public class SaveData extends javax.swing.JDialog {
 
     /**
      * Creates new form SaveData
      */
-    public SaveData() 
+    public SaveData(java.awt.Frame parent, boolean modal) 
     {
+        super(parent,modal);
         initComponents();
-        setVisible(true);
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -42,7 +46,7 @@ public class SaveData extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         imgLoading.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loading.gif"))); // NOI18N
 
@@ -121,10 +125,29 @@ public class SaveData extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        /*EN ARCHIVO BINARIO
         VideogameFileControl.delete();
         VideogameFileControl.write(DataControl.gameList);
         DataControl.saved=true;
         setVisible(false);
+        */
+
+        //EN BASE DE DATOS
+        try {
+            Database db = new Database();
+            db.deleteVideogames();
+            db.InsertNewVideogames(DataControl.gameList);
+            DataControl.saved=true;
+            setVisible(false);
+            db.close();
+        }
+        catch (SQLException ex) 
+        {
+            System.out.println(ConsoleColors.RED+"No se pudo acceder a la base de datos."+ex);
+            ex.printStackTrace();
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

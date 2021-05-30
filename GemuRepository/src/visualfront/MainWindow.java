@@ -148,7 +148,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuAddVideogame = new javax.swing.JMenu();
         mnuErase = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        mnuSave = new javax.swing.JMenu();
         mnuStatistics = new javax.swing.JMenu();
         mnuSort = new javax.swing.JMenu();
         mnuOff = new javax.swing.JMenu();
@@ -244,13 +244,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         });
         jMenuBar1.add(mnuErase);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/floppyPixel.png"))); // NOI18N
-        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+        mnuSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/floppyPixel.png"))); // NOI18N
+        mnuSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenu3MousePressed(evt);
+                mnuSaveMousePressed(evt);
             }
         });
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(mnuSave);
 
         mnuStatistics.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/data.png"))); // NOI18N
         mnuStatistics.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -302,9 +302,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MousePressed
-        SaveData sd = new SaveData();
-    }//GEN-LAST:event_jMenu3MousePressed
+    private void mnuSaveMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSaveMousePressed
+        new SaveData(this,true);
+    }//GEN-LAST:event_mnuSaveMousePressed
 
     private void mnuAddVideogameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAddVideogameActionPerformed
         
@@ -348,7 +348,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgGameCase;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -359,6 +358,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     private javax.swing.JMenu mnuDelete;
     private javax.swing.JMenu mnuErase;
     private javax.swing.JMenu mnuOff;
+    private javax.swing.JMenu mnuSave;
     private javax.swing.JMenu mnuSort;
     private javax.swing.JMenu mnuStatistics;
     private javax.swing.JTable tblList;

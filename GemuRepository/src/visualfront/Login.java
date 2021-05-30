@@ -1,7 +1,11 @@
 package visualfront;
 
 import appinfo.AppInfo;
+import database.Database;
 import datacontrol.DataControl;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import user.User;
@@ -144,6 +148,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MousePressed
 
     private void btnEnterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnterMousePressed
+        /*EN ARCHIVO BINARIO
         boolean userExists=false;
         String userName = txtUsername.getText();
         String password = txtPass.getText();
@@ -166,6 +171,37 @@ public class Login extends javax.swing.JFrame {
             txtUsername.setText("");
             txtPass.setText("");
         }
+        */
+        
+        //EN BASE DE DATOS
+        String userName = txtUsername.getText();
+        String password = txtPass.getText();
+        
+        try {
+            Database db = new Database();
+            if (db.checkUserExist(userName))
+            {
+                if (db.checkUserPassword(userName, password))
+                {
+                    new MainWindow();
+                    setVisible(false);
+                }else{
+                    txtError.setVisible(true);
+                    txtError.setText("Password does not match");
+                }
+            }else{
+                txtError.setVisible(true);
+                txtError.setText("Username does not exists");
+            }
+            
+            db.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ConsoleColors.RED+"No se pudo acceder a la base de datos");
+        }
+        
+        
     }//GEN-LAST:event_btnEnterMousePressed
 
     private void btnForgotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnForgotMouseClicked

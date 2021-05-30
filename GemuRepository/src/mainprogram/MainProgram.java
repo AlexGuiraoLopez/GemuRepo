@@ -20,9 +20,8 @@ public class MainProgram
         try {
             Database db = new Database();
             DataControl.userList=db.getUserList();
+            DataControl.gameList=db.getVideogameList();
             
-            
-            //new TrialFrame();
             //MainWindow mw = new MainWindow();
             new Login();
             db.close();

@@ -22,7 +22,8 @@ public class AddUser extends javax.swing.JDialog {
     /**
      * Creates new form AddUser
      */
-    public AddUser(java.awt.Frame parent, boolean modal) {
+    public AddUser(java.awt.Frame parent, boolean modal) 
+    {
         super(parent, modal);
         initComponents();
         txtError.setVisible(false);

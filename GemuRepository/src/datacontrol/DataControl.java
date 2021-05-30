@@ -18,9 +18,10 @@ public class DataControl
     * Al iniciar el programa, los datos de los archivos binarios son transferidos a las listas locales para
     * trabajar con ellas durante la ejecución del programa.
     */
-    public static ArrayList<Videogame> gameList=VideogameFileControl.read();
+    //public static ArrayList<Videogame> gameList=VideogameFileControl.read();
     //public static ArrayList<User> userList = UserFileControl.read();
     public static ArrayList<User> userList;
+    public static ArrayList<Videogame> gameList;
     
     public static boolean saved=true; //Los datos más recientes están guardados en el archivo binario.
     public static boolean recordChanged=false; //Se ha producido algún cambio en un registro de la lista.

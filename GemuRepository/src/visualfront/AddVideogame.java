@@ -7,7 +7,7 @@ package visualfront;
 import appinfo.AppInfo;
 import filecontrol.VideogameFileControl;
 import java.util.ArrayList;
-import date.Date;
+import java.sql.Date;
 import videogame.Videogame;
 import datacontrol.DataControl;
 import javax.swing.ImageIcon;
@@ -35,9 +35,10 @@ public class AddVideogame extends javax.swing.JDialog {
         setVisible(true);
     }
 
-    public void showList()
+    public void showVideogameList()
     {
-        for (Videogame v:DataControl.gameList){
+        for (Videogame v:DataControl.gameList)
+        {
             System.out.println(v.toString());
         }
     }
@@ -222,7 +223,7 @@ public class AddVideogame extends javax.swing.JDialog {
         {
             completed=1; //Investigar para guardar valores boolean en un archivo binario (apaño con integer = 1).
         }
-                
+        
         DataControl.gameList.add(new Videogame(title, company, gameConsole, new Date (year,month,day),completed));
         DataControl.saved=false;
         DataControl.recordChanged=true;
@@ -238,7 +239,7 @@ public class AddVideogame extends javax.swing.JDialog {
         
         //DEBUG
         System.out.println(ConsoleColors.GREEN+"¡El videojuego se registró con éxito!");
-        showList();
+        showVideogameList();
     }
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed

@@ -1,6 +1,7 @@
 package videogame;
 
-import date.Date;
+import java.sql.Date;
+
 
 
 /** 
@@ -16,6 +17,7 @@ public class Videogame
     private String title;
     private String company;
     private String gameConsole;
+    //private Date releaseDate; //Para archivo binario.
     private Date releaseDate;
     private int completed;
     private String image;
