@@ -21,9 +21,12 @@ public class Database
     private Connection conn;
     
     public Database() throws SQLException{
-        String url="jdbc:mysql://localhost/videogameCollection";
-        String user="root";
-        String password="";
+        //String url="jdbc:mysql://localhost/videogamesCollection";
+        //String user="root";
+        //String password="";
+        String url="jdbc:sqlserver://85.208.20.43:1433;databaseName=videogamesCollection";
+        String user="sa";
+        String password="Aresu2020";
         conn = DriverManager.getConnection(url, user, password);
     }
     

@@ -17,6 +17,14 @@ public class MainProgram
 {
     public static void main(String[] args) 
     {
+        /*
+        try { 
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");     
+            System.out.println("Driver funciona correctamente."); 
+        }catch (ClassNotFoundException e) {
+            System.out.println("Error: " + e.getMessage()); 
+        }
+        */
         try {
             Database db = new Database();
             DataControl.userList=db.getUserList();

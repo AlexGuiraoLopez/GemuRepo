@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import date.Date;
+import java.sql.Date;
 import videogame.Videogame;
 import visualfront.ConsoleColors;
 
