@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import visualfront.ConsoleColors;
 import visualfront.Login;
 import visualfront.MainWindow;
-import visualfront.TrialFrame;
+import visualfront.ErrorWindow;
 import datacontrol.DataControl;
 
 /**
@@ -17,15 +17,16 @@ public class MainProgram
 {
     public static void main(String[] args) 
     {
-        /*
+         
         try { 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");     
             System.out.println("Driver funciona correctamente."); 
         }catch (ClassNotFoundException e) {
             System.out.println("Error: " + e.getMessage()); 
         }
-        */
+        
         try {
+            System.out.println("Comprobando conexión...");
             Database db = new Database();
             DataControl.userList=db.getUserList();
             DataControl.gameList=db.getVideogameList();
@@ -36,6 +37,7 @@ public class MainProgram
         }
         catch (SQLException ex) 
         {
+            ErrorWindow error = new ErrorWindow();
             System.out.println(ConsoleColors.RED+"Algo salió mal con la base de datos");
             ex.printStackTrace();
         }

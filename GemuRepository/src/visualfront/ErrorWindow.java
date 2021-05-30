@@ -6,13 +6,13 @@ import javax.swing.JLabel;
 /**
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
  */
-public class TrialFrame extends javax.swing.JFrame {
+public class ErrorWindow extends javax.swing.JFrame {
 
   
-    public TrialFrame() {
+    public ErrorWindow() {
         initComponents();
         setLocationRelativeTo(null);
-        
+        setVisible(true);
     }
 
     /**
@@ -24,34 +24,29 @@ public class TrialFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn1 = new javax.swing.JButton();
-        btn2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btn1.setText("jButton1");
-
-        btn2.setText("jButton2");
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 52)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setText("Conection failed...   vv'");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(btn1)
-                .addGap(171, 171, 171)
-                .addComponent(btn2)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addGap(76, 76, 76)
+                .addComponent(jLabel1)
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(181, 181, 181)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn1)
-                    .addComponent(btn2))
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addGap(167, 167, 167)
+                .addComponent(jLabel1)
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         pack();
@@ -59,7 +54,6 @@ public class TrialFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn1;
-    private javax.swing.JButton btn2;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
