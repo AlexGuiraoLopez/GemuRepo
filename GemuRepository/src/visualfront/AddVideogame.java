@@ -179,11 +179,12 @@ public class AddVideogame extends javax.swing.JDialog {
                     .addComponent(jLabel4)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkCompleted))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chkCompleted)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegister)
@@ -215,16 +216,19 @@ public class AddVideogame extends javax.swing.JDialog {
         String title=txtTitle.getText();
         String company=txtCompany.getText();
         String gameConsole=txtGameConsole.getText();
-        int year=Integer.parseInt(txtYear.getText());
-        int month=Integer.parseInt(txtMonth.getText());
-        int day=Integer.parseInt(txtDay.getText());
+        /*Crear tipo DATE*/
+        int year=Integer.parseInt(txtYear.getText()); //Obtén año
+        int month=Integer.parseInt(txtMonth.getText()); //Obtén mes
+        int day=Integer.parseInt(txtDay.getText()); //Obten día
+        String date = ""+year + "-" + month + "-" + day; //Concatena los valores en un String
+        
         int completed=0;
         if (chkCompleted.isSelected())
         {
             completed=1; //Investigar para guardar valores boolean en un archivo binario (apaño con integer = 1).
         }
         
-        DataControl.gameList.add(new Videogame(title, company, gameConsole, new Date (year,month,day),completed));
+        DataControl.gameList.add(new Videogame(title, company, gameConsole,  Date.valueOf(date) /*new Date (year,month,day)*/,completed));
         DataControl.saved=false;
         DataControl.recordChanged=true;
         

@@ -21,12 +21,14 @@ public class Database
     private Connection conn;
     
     public Database() throws SQLException{
-        //String url="jdbc:mysql://localhost/videogamesCollection";
-        //String user="root";
-        //String password="";
+        String url="jdbc:mysql://localhost/videogamesCollection";
+        String user="root";
+        String password="";
+        /*
         String url="jdbc:sqlserver://85.208.20.43:1433;databaseName=videogamesCollection";
         String user="sa";
         String password="Aresu2020";
+        */
         conn = DriverManager.getConnection(url, user, password);
     }
     
@@ -183,9 +185,11 @@ public class Database
                 String title = rs.getString(1);
                 String company = rs.getString(2);
                 String gameConsole = rs.getString(3);
-                Date date = rs.getDate(4);
+                String date = rs.getString(4);
+                
                 int completed = rs.getInt(5);
-                videogameList.add(new Videogame(title, company, gameConsole,date,completed));
+                videogameList.add(new Videogame(title, company, gameConsole,Date.valueOf(date),completed));
+                
             }
             
             if (!aux)

@@ -1,6 +1,6 @@
-drop database if exists videogameCollection;
-create database videogameCollection;
-use videogameCollection;
+drop database if exists videogamesCollection;
+create database videogamesCollection;
+use videogamesCollection;
 
 create table users(
 username varchar(8),
@@ -16,7 +16,7 @@ releaseDate date,
 completed int,
 PRIMARY KEY (title));
 
-Select * from videogames;
+-- Select * from videogames;
 
 ## INSERTS de prueba ##
 -- insert into videogames values ("Pokemon","Nintendo","gameboy","1994-12-10",1);

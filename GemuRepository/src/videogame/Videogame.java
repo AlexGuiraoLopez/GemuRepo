@@ -2,8 +2,6 @@ package videogame;
 
 import java.sql.Date;
 
-
-
 /** 
  * Información sobre los videojuegos que se registran en el programa.
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
