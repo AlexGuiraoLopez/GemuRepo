@@ -17,6 +17,7 @@ public class Login extends javax.swing.JFrame {
     public Login()
     {
         initComponents();
+        this.getRootPane().setDefaultButton(btnEnter); //Permite accionar el botón con la tecla intro.
         setLocationRelativeTo(null);
         setTitle(AppInfo.NAME);
         setIconImage(WindowControl.appIcon.getImage());
@@ -45,7 +46,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnEnter = new javax.swing.JButton();
         txtError = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnRegister = new javax.swing.JButton();
         btnForgot = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,9 +59,9 @@ public class Login extends javax.swing.JFrame {
 
         btnEnter.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         btnEnter.setText("Enter");
-        btnEnter.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnEnterMousePressed(evt);
+        btnEnter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnterActionPerformed(evt);
             }
         });
 
@@ -68,15 +69,10 @@ public class Login extends javax.swing.JFrame {
         txtError.setForeground(new java.awt.Color(255, 0, 0));
         txtError.setText("jLabel2");
 
-        jButton1.setText("New User");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRegister.setText("New User");
+        btnRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton1MousePressed(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRegisterMousePressed(evt);
             }
         });
 
@@ -109,7 +105,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(btnForgot, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -131,7 +127,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(btnEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnRegister)
                     .addComponent(btnForgot))
                 .addContainerGap())
         );
@@ -139,79 +135,22 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+    private void btnRegisterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMousePressed
         AddUser au = new AddUser(this,true);
-    }//GEN-LAST:event_jButton1MousePressed
-
-    private void btnEnterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnterMousePressed
-        /*EN ARCHIVO BINARIO
-        boolean userExists=false;
-        String userName = txtUsername.getText();
-        String password = txtPass.getText();
-        
-        for (User u:DataControl.userList)
-        {
-            if (userName.equals(u.getUsername())&&password.equals(u.getPassword()))
-            {
-                userExists=true;
-            }
-        }
-        
-        if (userExists)
-        {
-            new MainWindow();
-            setVisible(false);
-        }else{
-            txtError.setVisible(true);
-            txtError.setText("User does not exist");
-            txtUsername.setText("");
-            txtPass.setText("");
-        }
-        */
-        
-        //EN BASE DE DATOS
-        String userName = txtUsername.getText();
-        String password = txtPass.getText();
-        
-        try {
-            Database db = new Database();
-            if (db.checkUserExist(userName))
-            {
-                if (db.checkUserPassword(userName, password))
-                {
-                    new MainWindow();
-                    setVisible(false);
-                }else{
-                    txtError.setVisible(true);
-                    txtError.setText("Password does not match");
-                }
-            }else{
-                txtError.setVisible(true);
-                txtError.setText("Username does not exists");
-            }
-            
-            db.close();
-        } 
-        catch (SQLException ex) 
-        {
-            System.out.println(ConsoleColors.RED+"No se pudo acceder a la base de datos");
-        }
-        
-        
-    }//GEN-LAST:event_btnEnterMousePressed
+    }//GEN-LAST:event_btnRegisterMousePressed
 
     private void btnForgotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnForgotMouseClicked
         new ForgotPassword(this, true);
     }//GEN-LAST:event_btnForgotMouseClicked
 
+    private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
+        new MainWindow();
+    }//GEN-LAST:event_btnEnterActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnter;
     private javax.swing.JButton btnForgot;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel txtError;

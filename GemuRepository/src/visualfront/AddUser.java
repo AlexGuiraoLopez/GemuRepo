@@ -26,6 +26,7 @@ public class AddUser extends javax.swing.JDialog {
     {
         super(parent, modal);
         initComponents();
+        this.getRootPane().setDefaultButton(btnRegister); //Permite accionar el botón con la tecla intro.
         txtError.setVisible(false);
         setLocationRelativeTo(null);
         setVisible(true);

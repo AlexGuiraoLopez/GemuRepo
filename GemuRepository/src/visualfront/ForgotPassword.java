@@ -20,6 +20,7 @@ public class ForgotPassword extends javax.swing.JDialog {
     public ForgotPassword(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.getRootPane().setDefaultButton(btnApply); //Permite accionar el botón con la tecla intro.
         lblUsername.setVisible(false);
         lblPassword.setVisible(false);
         lblError.setVisible(false);

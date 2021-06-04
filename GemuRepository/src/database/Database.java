@@ -21,6 +21,7 @@ public class Database
     private Connection conn;
     
     public Database() throws SQLException{
+        
         String url="jdbc:mysql://localhost/videogamesCollection";
         String user="root";
         String password="";
