@@ -1,7 +1,9 @@
 package visualfront;
 
+import database.Database;
 import filecontrol.VideogameFileControl;
 import datacontrol.DataControl;
+import java.sql.SQLException;
 /**
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
  */
@@ -106,8 +108,25 @@ public class ExitSave extends javax.swing.JDialog {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnSaveExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveExitActionPerformed
-        VideogameFileControl.delete();
-        VideogameFileControl.write(DataControl.gameList);
+        //En archivo Binario
+        //VideogameFileControl.delete();
+        //VideogameFileControl.write(DataControl.gameList);
+       
+        //EN BASE DE DATOS
+        try {
+            Database db = new Database();
+            db.deleteVideogames();
+            db.InsertNewVideogames(DataControl.gameList);
+            DataControl.saved=true;
+            setVisible(false);
+            db.close();
+        }
+        catch (SQLException ex) 
+        {
+            System.out.println(ConsoleColors.RED+"No se pudo acceder a la base de datos."+ex);
+            ex.printStackTrace();
+        }
+        
         System.exit(200);
     }//GEN-LAST:event_btnSaveExitActionPerformed
 

@@ -124,7 +124,6 @@ public class SaveData extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-
         setVisible(false);
     }//GEN-LAST:event_btnCancelActionPerformed
 

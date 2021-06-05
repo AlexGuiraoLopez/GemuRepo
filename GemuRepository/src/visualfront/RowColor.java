@@ -3,6 +3,7 @@ package visualfront;
 import datacontrol.DataControl;
 import java.awt.Color;
 import java.awt.Component;
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -19,6 +20,12 @@ public class RowColor extends DefaultTableCellRenderer
     {
         super.getTableCellRendererComponent(table, value, selected, hasFocus, row, col);
     
+        if (value instanceof JButton)
+        {
+            JButton btn = (JButton)value;
+            return btn;
+        }
+        
         if (DataControl.gameList.get(row).getCompleted()==1)
             {
                 setBackground(ROW_COLOR);

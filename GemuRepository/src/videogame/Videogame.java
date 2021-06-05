@@ -101,6 +101,28 @@ public class Videogame
     public int getCompleted(){
         return this.completed;
     }
-    
-    
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public void setGameConsole(String gameConsole) {
+        this.gameConsole = gameConsole;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public void setCompleted(int completed) {
+        this.completed = completed;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

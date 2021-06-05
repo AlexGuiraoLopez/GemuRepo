@@ -12,7 +12,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.Comparator;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -22,6 +24,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import videogame.Videogame;
 import time.Time;
+import visualfront.UpdateVideogame;
 
 /**
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
@@ -59,13 +62,16 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     public void fillTable()
     {
         DefaultTableModel model = (DefaultTableModel) tblList.getModel();
-        Object rowData [] = new Object[4];
+        Object rowData [] = new Object[5];
         for (int i = 0; i<DataControl.gameList.size();i++)
         {
-            rowData[0]= DataControl.gameList.get(i).getTitle();
-            rowData[1]= DataControl.gameList.get(i).getGameConsole();
-            rowData[2]= DataControl.gameList.get(i).getCompany();
-            rowData[3]= DataControl.gameList.get(i).getReleaseDate();
+            ImageIcon icon = new ImageIcon("assets\\icon\\edit.png");
+            
+            rowData[0]= new JButton(icon);
+            rowData[1]= DataControl.gameList.get(i).getTitle();
+            rowData[2]= DataControl.gameList.get(i).getGameConsole();
+            rowData[3]= DataControl.gameList.get(i).getCompany();
+            rowData[4]= DataControl.gameList.get(i).getReleaseDate();
             model.addRow(rowData);
             
             DataControl.recordChanged=false;
@@ -78,12 +84,16 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     public void addRow()
     {
         DefaultTableModel model = (DefaultTableModel) tblList.getModel();
-        Object rowData [] = new Object[4];
+        Object rowData [] = new Object[5];
         int lastPos = DataControl.gameList.size()-1;
-        rowData[0]= DataControl.gameList.get(lastPos).getTitle();
-        rowData[1]= DataControl.gameList.get(lastPos).getGameConsole();
-        rowData[2]= DataControl.gameList.get(lastPos).getCompany();
-        rowData[3]= DataControl.gameList.get(lastPos).getReleaseDate();
+        
+        ImageIcon icon = new ImageIcon("assets\\icon\\edit.png");
+            
+        rowData[0]= new JButton(icon);
+        rowData[1]= DataControl.gameList.get(lastPos).getTitle();
+        rowData[2]= DataControl.gameList.get(lastPos).getGameConsole();
+        rowData[3]= DataControl.gameList.get(lastPos).getCompany();
+        rowData[4]= DataControl.gameList.get(lastPos).getReleaseDate();
         model.addRow(rowData);
     }
     
@@ -191,14 +201,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
 
             },
             new String [] {
-                "Title", "Console", "Company", "Release Year"
+                "Edit", "Title", "Console", "Company", "Release Year"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -211,13 +221,20 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         });
         tblList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tblList.setRowHeight(25);
+        tblList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblListMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblList);
         if (tblList.getColumnModel().getColumnCount() > 0) {
             tblList.getColumnModel().getColumn(0).setResizable(false);
-            tblList.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tblList.getColumnModel().getColumn(0).setPreferredWidth(10);
             tblList.getColumnModel().getColumn(1).setResizable(false);
+            tblList.getColumnModel().getColumn(1).setPreferredWidth(200);
             tblList.getColumnModel().getColumn(2).setResizable(false);
             tblList.getColumnModel().getColumn(3).setResizable(false);
+            tblList.getColumnModel().getColumn(4).setResizable(false);
         }
 
         imgGameCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mainImage.jpg"))); // NOI18N
@@ -227,17 +244,16 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(imgGameCase)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(imgGameCase))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1615, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(imgGameCase, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(imgGameCase, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1615, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -311,7 +327,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1026, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,6 +375,27 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     private void mnuDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDeleteMouseClicked
         deleteRow();
     }//GEN-LAST:event_mnuDeleteMouseClicked
+
+    private void tblListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListMouseClicked
+        
+        /*Al clicar en la tabla quiero detectar el punto exacto donde se ha realizado el click.
+        Para eso voy a obtener 2 ejes*/
+        int column = tblList.getColumnModel().getColumnIndexAtX(evt.getX()); //Obtén el índice de la columna donde el click
+        int row = evt.getY()/tblList.getRowHeight(); //Obtén la fila donde el click
+        
+        //Comprueba límites de ltabla.
+        if (row < tblList.getRowCount() && row >=0 && column < tblList.getColumnCount() && column >= 0)
+        {
+            Object value = tblList.getValueAt(row, column); //Obtén el objeto del click
+            if (value instanceof JButton)   //Si es un botón...
+            {
+                ((JButton)value).doClick(); //Haz un click "virtual" en el botón
+                JButton btn = (JButton) value;
+                new UpdateVideogame(this,true,row);
+            }
+        }
+        
+    }//GEN-LAST:event_tblListMouseClicked
     /*
     public JTable getTableList()
     {

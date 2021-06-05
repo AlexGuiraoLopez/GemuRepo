@@ -139,8 +139,8 @@ public class SortBy extends javax.swing.JDialog {
             @Override
             public int compare(Videogame t, Videogame t1) 
             {
-                int char1 = t.getTitle().charAt(0);
-                int char2 = t1.getTitle().charAt(0);
+                int char1 = t.getTitle().toLowerCase().charAt(0);
+                int char2 = t1.getTitle().toLowerCase().charAt(0);
                 return char1-char2;
             }
         });
