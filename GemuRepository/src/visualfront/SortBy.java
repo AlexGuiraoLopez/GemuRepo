@@ -4,7 +4,7 @@ import datacontrol.DataControl;
 import java.awt.Color;
 import java.util.Comparator;
 import videogame.Videogame;
-import appinfo.AppInfo;
+import localdata.LocalData;
 
 /**
  *

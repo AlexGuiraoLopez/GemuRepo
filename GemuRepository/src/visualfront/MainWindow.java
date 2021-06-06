@@ -1,6 +1,6 @@
 package visualfront;
 
-import appinfo.AppInfo;
+import localdata.LocalData;
 import database.Database;
 import datacontrol.DataControl;
 import java.awt.Color;
@@ -46,7 +46,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         createWindowListener();
         //Cambia el renderer de la tabla para colorear las filas segun el estado del videojuego.
         tblList.setDefaultRenderer(tblList.getColumnClass(0), rc); 
-        setTitle(AppInfo.NAME);
+        setTitle(LocalData.NAME);
         setIconImage(WindowControl.appIcon.getImage());
         setLocationRelativeTo(null);
         setVisible(true);

@@ -31,8 +31,8 @@ public class MainProgram
             DataControl.userList=db.getUserList();
             DataControl.gameList=db.getVideogameList();
             
-            //MainWindow mw = new MainWindow();
-            new Login();
+            MainWindow mw = new MainWindow();
+            //new Login();
             db.close();
         }
         catch (SQLException ex) 

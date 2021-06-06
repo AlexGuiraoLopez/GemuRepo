@@ -1,6 +1,6 @@
 package visualfront;
 
-import appinfo.AppInfo;
+import localdata.LocalData;
 import database.Database;
 import datacontrol.DataControl;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         this.getRootPane().setDefaultButton(btnEnter); //Permite accionar el botón con la tecla intro.
         setLocationRelativeTo(null);
-        setTitle(AppInfo.NAME);
+        setTitle(LocalData.NAME);
         setIconImage(WindowControl.appIcon.getImage());
         ImageIcon backgroundImage = new ImageIcon("assets/bckgImage/arcadeMachineBackground.jpg");
         JLabel background = new JLabel("",backgroundImage,JLabel.CENTER);

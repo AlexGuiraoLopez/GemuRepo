@@ -31,12 +31,6 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -50,7 +44,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="txtYear" min="-2" pref="35" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -65,12 +59,26 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="txtCompany" min="-2" pref="93" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtGameConsole" min="-2" pref="93" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="txtTitle" min="-2" pref="192" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="cbCompany" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="cbConsole" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -94,12 +102,12 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtCompany" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtGameConsole" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbCompany" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbConsole" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -151,11 +159,6 @@
         <Property name="text" type="java.lang.String" value="Company"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCompany">
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="txtCompany"/>
-      </AccessibilityProperties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -166,11 +169,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Console"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtGameConsole">
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="txtGameConsole"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -246,6 +244,29 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkCompleted">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbCompany">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbCompanyActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbConsole">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
