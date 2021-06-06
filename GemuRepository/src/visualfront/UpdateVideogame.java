@@ -1,5 +1,7 @@
 package visualfront;
 import datacontrol.DataControl;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import videogame.Videogame;
 /**
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
@@ -21,12 +23,29 @@ public class UpdateVideogame extends javax.swing.JDialog {
         setVisible(true);
     }
 
+    /**
+     * Rellena la información actual del videojuego en sus correspondientes campos de texto.
+     */
     public void fillVideogameInfo()
     {
         txtTitle.setText(videogame.getTitle());
         txtCompany.setText(videogame.getCompany());
         txtGameConsole.setText(videogame.getGameConsole());
-        txtYear.setText(Integer.toString(videogame.getYear()));
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        String dateText = sdf.format(videogame.getReleaseDate());
+        String year = dateText.substring(0,4);
+        String month = dateText.substring(5,7);
+        String day = dateText.substring(8,10);
+        
+        txtYear.setText(year);
+        txtMonth.setText(month);
+        txtDay.setText(day);
+        
+        if (videogame.getCompleted()==1)
+        {
+            chkCompleted.setSelected(true);
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -39,9 +58,9 @@ public class UpdateVideogame extends javax.swing.JDialog {
         txtYear = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        txtYear1 = new javax.swing.JTextField();
-        txtYear2 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        txtMonth = new javax.swing.JTextField();
+        txtDay = new javax.swing.JTextField();
+        chkCompleted = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -67,11 +86,11 @@ public class UpdateVideogame extends javax.swing.JDialog {
             }
         });
 
-        txtYear1.setText("jTextField1");
+        txtMonth.setText("jTextField1");
 
-        txtYear2.setText("jTextField1");
+        txtDay.setText("jTextField1");
 
-        jCheckBox1.setText("Completed");
+        chkCompleted.setText("Completed");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,11 +104,11 @@ public class UpdateVideogame extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtYear1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtYear2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox1))
+                                .addComponent(chkCompleted))
                             .addComponent(txtGameConsole)
                             .addComponent(txtCompany)
                             .addComponent(txtTitle))
@@ -113,9 +132,9 @@ public class UpdateVideogame extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtYear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtYear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
+                    .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkCompleted))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
@@ -127,9 +146,18 @@ public class UpdateVideogame extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        DataControl.gameList.get(row).setTitle(txtTitle.getText());
-        DataControl.gameList.get(row).setCompany(txtCompany.getText());
-        DataControl.gameList.get(row).setGameConsole(txtGameConsole.getText());
+        videogame.setTitle(txtTitle.getText());
+        videogame.setCompany(txtCompany.getText());
+        videogame.setGameConsole(txtGameConsole.getText());
+        String releaseDate=txtYear.getText()+"-"+txtMonth.getText()+"-"+txtDay.getText();
+        videogame.setReleaseDate(Date.valueOf(releaseDate));
+        
+        if (chkCompleted.isSelected())
+        {
+            videogame.setCompleted(1);
+        }else{
+            videogame.setCompleted(0);
+        }
         
         DataControl.clear=true;
         DataControl.refresh=true;
@@ -143,12 +171,12 @@ public class UpdateVideogame extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox chkCompleted;
     private javax.swing.JTextField txtCompany;
+    private javax.swing.JTextField txtDay;
     private javax.swing.JTextField txtGameConsole;
+    private javax.swing.JTextField txtMonth;
     private javax.swing.JTextField txtTitle;
     private javax.swing.JTextField txtYear;
-    private javax.swing.JTextField txtYear1;
-    private javax.swing.JTextField txtYear2;
     // End of variables declaration//GEN-END:variables
 }

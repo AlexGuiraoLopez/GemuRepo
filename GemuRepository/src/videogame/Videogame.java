@@ -98,6 +98,8 @@ public class Videogame
         return this.releaseDate.getYear();
     }
     
+    
+    
     public int getCompleted(){
         return this.completed;
     }

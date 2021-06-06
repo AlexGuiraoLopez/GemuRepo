@@ -31,11 +31,11 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="txtYear" min="-2" pref="36" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtYear1" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="txtMonth" min="-2" pref="23" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtYear2" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="txtDay" min="-2" pref="23" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkCompleted" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="txtGameConsole" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtCompany" alignment="0" max="32767" attributes="0"/>
@@ -66,9 +66,9 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtYear" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtYear1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtYear2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtMonth" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDay" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="chkCompleted" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -117,17 +117,17 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCancelMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtYear1">
+    <Component class="javax.swing.JTextField" name="txtMonth">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtYear2">
+    <Component class="javax.swing.JTextField" name="txtDay">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+    <Component class="javax.swing.JCheckBox" name="chkCompleted">
       <Properties>
         <Property name="text" type="java.lang.String" value="Completed"/>
       </Properties>

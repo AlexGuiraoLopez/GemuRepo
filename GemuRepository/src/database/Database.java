@@ -190,7 +190,6 @@ public class Database
                 
                 int completed = rs.getInt(5);
                 videogameList.add(new Videogame(title, company, gameConsole,Date.valueOf(date),completed));
-                
             }
             
             if (!aux)

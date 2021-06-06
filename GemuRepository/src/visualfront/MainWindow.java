@@ -178,12 +178,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         imgGameCase = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuAddVideogame = new javax.swing.JMenu();
-        mnuErase = new javax.swing.JMenu();
+        mnuDelete = new javax.swing.JMenu();
         mnuSave = new javax.swing.JMenu();
         mnuStatistics = new javax.swing.JMenu();
         mnuSort = new javax.swing.JMenu();
+        mnuErase = new javax.swing.JMenu();
         mnuOff = new javax.swing.JMenu();
-        mnuDelete = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -273,13 +273,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         });
         jMenuBar1.add(mnuAddVideogame);
 
-        mnuErase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minus.png"))); // NOI18N
-        mnuErase.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                mnuEraseMousePressed(evt);
+        mnuDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minus.png"))); // NOI18N
+        mnuDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuDeleteMouseClicked(evt);
             }
         });
-        jMenuBar1.add(mnuErase);
+        jMenuBar1.add(mnuDelete);
 
         mnuSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/floppyPixel.png"))); // NOI18N
         mnuSave.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -305,6 +305,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         });
         jMenuBar1.add(mnuSort);
 
+        mnuErase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/warning.png"))); // NOI18N
+        mnuErase.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                mnuEraseMousePressed(evt);
+            }
+        });
+        jMenuBar1.add(mnuErase);
+
         mnuOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/off.png"))); // NOI18N
         mnuOff.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -312,14 +320,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
             }
         });
         jMenuBar1.add(mnuOff);
-
-        mnuDelete.setText("Delete One");
-        mnuDelete.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnuDeleteMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(mnuDelete);
 
         setJMenuBar(jMenuBar1);
 
