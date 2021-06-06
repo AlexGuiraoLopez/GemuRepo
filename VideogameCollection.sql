@@ -16,7 +16,7 @@ releaseDate date,
 completed int,
 PRIMARY KEY (title));
 
--- Select * from videogames;
+Select * from videogames;
 
 ## INSERTS de prueba ##
 -- insert into videogames values ("Pokemon","Nintendo","gameboy","1994-12-10",1);
