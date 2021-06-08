@@ -32,7 +32,7 @@ import visualfront.UpdateVideogame;
 public class MainWindow extends javax.swing.JFrame implements ActionListener
 {
     Timer timer;
-    private static final int DELAY=60;
+    private static final int DELAY=100;
     int selectedRow=-1; //Número de fila seleccionada.
     
     RowColor rc = new RowColor(); //Renderer personalizado para las propiedades de la tabla.
@@ -94,6 +94,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         rowData[2]= DataControl.gameList.get(lastPos).getGameConsole();
         rowData[3]= DataControl.gameList.get(lastPos).getCompany();
         rowData[4]= DataControl.gameList.get(lastPos).getReleaseDate();
+        
         model.addRow(rowData);
     }
     
@@ -396,12 +397,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         }
         
     }//GEN-LAST:event_tblListMouseClicked
-    /*
-    public JTable getTableList()
-    {
-        return tblList;
-    }
-    */
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgGameCase;
     private javax.swing.JMenu jMenu5;
