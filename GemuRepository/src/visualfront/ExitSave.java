@@ -116,6 +116,9 @@ public class ExitSave extends javax.swing.JDialog {
             Database db = new Database();
             db.deleteVideogames();
             db.InsertNewVideogames(DataControl.gameList);
+            db.InsertNewCompanies(DataControl.companyList);
+            db.InsertNewConsoles(DataControl.consoleList);
+            
             DataControl.saved=true;
             setVisible(false);
             db.close();

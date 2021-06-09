@@ -7,7 +7,7 @@ import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.sql.Date;
-import videogame.Videogame;
+import elements.Videogame;
 import visualfront.ConsoleColors;
 
 /** 

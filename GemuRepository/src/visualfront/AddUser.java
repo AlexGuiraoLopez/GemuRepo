@@ -6,7 +6,7 @@
 package visualfront;
 
 import database.Database;
-import user.User;
+import elements.User;
 import datacontrol.DataControl;
 import filecontrol.UserFileControl;
 import java.sql.SQLException;

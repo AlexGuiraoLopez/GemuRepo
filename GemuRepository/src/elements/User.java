@@ -1,4 +1,4 @@
-package user;
+package elements;
 
 /** 
  * Información sobre los usuarios que se registran al programa.

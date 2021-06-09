@@ -1,5 +1,7 @@
 package database;
 
+import elements.Company;
+import elements.Console;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -9,8 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import user.User;
-import videogame.Videogame;
+import elements.User;
+import elements.Videogame;
 import visualfront.ConsoleColors;
 
 /** 
@@ -44,7 +46,7 @@ public class Database
      * @param username nombre del usuario a comprobar.
      * @return TRUE si existe.
      */
-    public boolean checkUserExist(String username)
+    public boolean checkUserExists(String username)
     {
         boolean exists=false;
         String query = "Select * from users where username = ?";
@@ -123,7 +125,7 @@ public class Database
             
             if (!aux)
             {
-                System.out.println(ConsoleColors.RED+"La lista de usuarios está vacía");
+                System.out.println(ConsoleColors.PURPLE+"La lista de usuarios está vacía");
             }
         } 
         catch (SQLException ex) 
@@ -194,7 +196,7 @@ public class Database
             
             if (!aux)
             {
-                System.out.println(ConsoleColors.RED+"La lista de videojuegos está vacía");
+                System.out.println(ConsoleColors.PURPLE+"La lista de videojuegos está vacía");
             }
         } 
         catch (SQLException ex) 
@@ -260,4 +262,259 @@ public class Database
         }
     }
         
+    //==============================COMPANIES===============================
+    /**
+     * Comprueba si existe una compañía en concreto dentro de la base de datos. 
+     * @param name nombre de la compañía a revisar.
+     * @return TRUE si ya existe.
+     */
+    public boolean checkCompanyExists(String name)
+    {
+        boolean exists=false;
+        String query = "Select * from companies where id = ?";
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, name.toUpperCase());
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                exists=true;
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ConsoleColors.RED+"No se pudo comprobar si la compañía existe");
+            ex.printStackTrace();
+        }
+        return exists;
+    }
+    
+    /**
+     * Añade una compañía a la base de datos.
+     * @param name nombre de la compañía a añadir.
+     * @return TRUE si la operación se ha realizado correctamente.
+     */
+    public boolean  insertCompany(String name)
+    {
+        boolean done=false;
+        String query="Insert into companies values (?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, name.toUpperCase());
+            int rowsChanged = ps.executeUpdate();
+            
+            if (rowsChanged!=0)
+            {
+                System.out.println(ConsoleColors.RED+"Se han insertado "+ rowsChanged + " compañías.");
+                done = true;
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("No se pudo insertar la compañía"+ex);
+            ex.printStackTrace();
+        }
+        
+        return done;
+    }
+    
+    /**
+     * Obtén la lista de compañías existentes en la base de datos.
+     * @return lista de las compañías.
+     */
+    public ArrayList<Company> getCompaniesList()
+    {
+        ArrayList<Company> companiesList=new ArrayList();
+        String query = "select * from companies";
+        PreparedStatement ps;
+        boolean aux=false;
+        
+        try {
+            ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+          
+            while(rs.next())
+            {
+                aux = true;
+                String name = rs.getString(1);
+                companiesList.add(new Company(name));
+            }
+             
+        } catch (SQLException ex) {
+            System.out.println(ConsoleColors.RED+"No se pudo obtener la lista de compañias de la base de datos.");
+            ex.printStackTrace();
+        }
+       
+        if (!aux)
+        {
+            System.out.println(ConsoleColors.PURPLE+"La lista de compañías está vacía");
+        }
+        
+        return companiesList;
+    }
+     
+    /**
+     * Añade una lista de compañías a la base de datos.
+     * @param companyList lista de compañías a añadir.
+     */
+    public void InsertNewCompanies(ArrayList<Company> companyList)
+    {
+        String query = "Insert into companies values (?)";
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            int rowsChanged=0;
+            
+            for (Company c:companyList)
+            {
+                ps.setString(1, c.getName());
+                ps.executeUpdate();
+                rowsChanged++;
+            }
+            
+            if (rowsChanged!=0)
+            {
+                System.out.println(ConsoleColors.GREEN+"Se ha insertado " + rowsChanged + " compañías.");
+            }else{
+                System.out.println(ConsoleColors.RED+"No se insertó ninguna compañía");
+            }
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ConsoleColors.RED+"Hubo un error al insertar una nueva compañía"+ex);
+            ex.printStackTrace();
+        }
+    }
+    
+    //==============================CONSOLES===============================
+    /**
+     * Comprueba si existe una consola en concreto dentro de la base de datos. 
+     * @param name nombre de la consola a revisar.
+     * @return TRUE si ya existe.
+     */
+    public boolean checkConsoleExists(String name)
+    {
+        boolean exists=false;
+        String query = "Select * from videogameConsoles where id = ?";
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, name.toUpperCase());
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                exists=true;
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ConsoleColors.RED+"No se pudo comprobar si la consola existe");
+            ex.printStackTrace();
+        }
+        return exists;
+    }
+    
+    /**
+     * Añade una consola a la base de datos.
+     * @param name nombre de la consola a añadir.
+     * @param companyName nombre de la compañía a la que pertenece la consola.
+     * @return TRUE si la operación se ha realizado con éxito.
+     */
+    public boolean insertConsole(String name, String companyName)
+    {
+        boolean done=false;
+        
+        if (checkCompanyExists(companyName))
+        {
+            String query="Insert into companies values (?, ?)";
+            try {
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, name.toUpperCase());
+                ps.setString(2, companyName);
+                int rowsChanged = ps.executeUpdate();
+
+                if (rowsChanged!=0)
+                {
+                    System.out.println(ConsoleColors.RED+"Se han insertado "+ rowsChanged + " consolas.");
+                    done=true;
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("No se pudo insertar la consola"+ex);
+                ex.printStackTrace();
+            }
+        }
+        
+        return done;
+    }
+    
+    /**
+     * Obtén la lista de las consolas existentes en la base de datos.
+     * @return lista de las consolas.
+     */
+    public ArrayList<Console> getConsoleList()
+    {
+        ArrayList<Console> consoleList=new ArrayList();
+        String query = "select * from videogameConsoles";
+        PreparedStatement ps;
+        boolean aux=false;
+        
+        try {
+            ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+          
+            while(rs.next())
+            {
+                aux = true;
+                String name = rs.getString(1);
+                String companyName = rs.getString(2);
+                consoleList.add(new Console(name,new Company(companyName)));
+            }
+             
+        } catch (SQLException ex) {
+            System.out.println(ConsoleColors.RED+"No se pudo obtener la lista de consolas de la base de datos.");
+            ex.printStackTrace();
+        }
+       
+        if (!aux)
+        {
+            System.out.println(ConsoleColors.PURPLE+"La lista de consolas está vacía");
+        }
+        
+        return consoleList;
+    }
+    
+     /**
+     * Añade una lista de consolas a la base de datos.
+     * @param consoleList lista de consolas a añadir.
+     */
+    public void InsertNewConsoles(ArrayList<Console> consoleList)
+    {
+        String query = "Insert into videogameConsoles values (?,?)";
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            int rowsChanged=0;
+            
+            for (Console c: consoleList)
+            {
+                ps.setString(1, c.getId());
+                ps.setString(2,c.getCompany().getName());
+                ps.executeUpdate();
+                rowsChanged++;
+            }
+            
+            if (rowsChanged!=0)
+            {
+                System.out.println(ConsoleColors.GREEN+"Se ha insertado " + rowsChanged + " consolas.");
+            }else{
+                System.out.println(ConsoleColors.RED+"No se insertó ninguna consola");
+            }
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println(ConsoleColors.RED+"Hubo un error al insertar una nueva consola"+ex);
+            ex.printStackTrace();
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package visualfront;
 import database.Database;
-import videogame.Videogame;
+import elements.Videogame;
 import filecontrol.VideogameFileControl;
 import datacontrol.DataControl;
 import java.awt.Color;

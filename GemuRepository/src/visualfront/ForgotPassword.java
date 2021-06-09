@@ -6,7 +6,7 @@
 package visualfront;
 
 import datacontrol.DataControl;
-import user.User;
+import elements.User;
 
 /**
  *

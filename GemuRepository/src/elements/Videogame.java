@@ -1,4 +1,4 @@
-package videogame;
+package elements;
 
 import java.sql.Date;
 

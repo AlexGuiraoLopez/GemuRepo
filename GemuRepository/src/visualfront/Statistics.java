@@ -2,7 +2,7 @@ package visualfront;
 
 import datacontrol.DataControl;
 import java.util.ArrayList;
-import videogame.Videogame;
+import elements.Videogame;
 /**
  * @author Alex Guirao López <aguiraol2021@cepnet.net>
  */

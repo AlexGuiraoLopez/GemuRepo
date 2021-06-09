@@ -3,7 +3,7 @@ package visualfront;
 import datacontrol.DataControl;
 import java.awt.Color;
 import java.util.Comparator;
-import videogame.Videogame;
+import elements.Videogame;
 import localdata.LocalData;
 
 /**

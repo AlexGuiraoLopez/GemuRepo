@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import user.User;
+import elements.User;
 import visualfront.ConsoleColors;
 
 /** 

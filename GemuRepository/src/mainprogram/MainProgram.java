@@ -17,7 +17,7 @@ public class MainProgram
 {
     public static void main(String[] args) 
     {
-         
+        //Comprueba el estado del driver para conectar a la base de datos. 
         try { 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");     
             System.out.println("Driver funciona correctamente."); 
@@ -25,14 +25,18 @@ public class MainProgram
             System.out.println("Error: " + e.getMessage()); 
         }
         
+        //Realiza la conexión a la base de datos y empieza el flujo principal del programa.
         try {
             System.out.println("Comprobando conexión...");
             Database db = new Database();
             DataControl.userList=db.getUserList();
             DataControl.gameList=db.getVideogameList();
+            DataControl.companyList=db.getCompaniesList();
+            DataControl.consoleList=db.getConsoleList();
             
-            MainWindow mw = new MainWindow();
             //new Login();
+            new MainWindow();
+         
             db.close();
         }
         catch (SQLException ex) 

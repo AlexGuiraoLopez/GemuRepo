@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import user.User;
+import elements.User;
 /**
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
  */
@@ -144,7 +144,7 @@ public class Login extends javax.swing.JFrame {
             String username = txtUsername.getText() ;
             String password = txtPass.getText();
             Database db = new Database();
-            if (db.checkUserExist(username))
+            if (db.checkUserExists(username))
             {
                 if (db.checkUserPassword(username, password))
                 {

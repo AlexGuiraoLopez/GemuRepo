@@ -22,7 +22,7 @@ import javax.swing.Timer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import videogame.Videogame;
+import elements.Videogame;
 import time.Time;
 import visualfront.UpdateVideogame;
 
@@ -166,6 +166,41 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
             }
         });
     }
+    
+    //==================TIMER=========================
+    public void startTimer()
+    {
+        /*Inicialización del tiempo*/
+        timer = new Timer (DELAY,this); //Investigar el timer.
+        timer.start();
+    }
+            
+    /**
+     * Acciones que se realizan automáticamente cada cierto tiempo marcado por el timer.
+     * @param ae 
+     */
+    @Override
+    public void actionPerformed(ActionEvent ae) 
+    {
+        if (DataControl.clear)
+        {
+            clearTable();
+            DataControl.clear=false;
+        }
+        
+        if (DataControl.recordChanged)
+        {
+            addRow();
+            DataControl.recordChanged=false;
+        }
+        
+        if (DataControl.refresh)
+        {
+            fillTable();
+            DataControl.refresh=false;
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -178,7 +213,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         tblList = new javax.swing.JTable();
         imgGameCase = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        mnuAddVideogame = new javax.swing.JMenu();
+        mnuAddElement = new javax.swing.JMenu();
+        mnuAddConsole = new javax.swing.JMenuItem();
+        mnuAddVideogame = new javax.swing.JMenuItem();
         mnuDelete = new javax.swing.JMenu();
         mnuSave = new javax.swing.JMenu();
         mnuStatistics = new javax.swing.JMenu();
@@ -261,18 +298,27 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 255));
         jMenuBar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
-        mnuAddVideogame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cross.png"))); // NOI18N
-        mnuAddVideogame.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnuAddVideogameMouseClicked(evt);
+        mnuAddElement.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cross.png"))); // NOI18N
+
+        mnuAddConsole.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        mnuAddConsole.setText("Console");
+        mnuAddConsole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAddConsoleActionPerformed(evt);
             }
         });
+        mnuAddElement.add(mnuAddConsole);
+
+        mnuAddVideogame.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        mnuAddVideogame.setText("Videogame");
         mnuAddVideogame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuAddVideogameActionPerformed(evt);
             }
         });
-        jMenuBar1.add(mnuAddVideogame);
+        mnuAddElement.add(mnuAddVideogame);
+
+        jMenuBar1.add(mnuAddElement);
 
         mnuDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minus.png"))); // NOI18N
         mnuDelete.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -342,21 +388,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         new SaveData(this,true);
     }//GEN-LAST:event_mnuSaveMousePressed
 
-    private void mnuAddVideogameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAddVideogameActionPerformed
-        
-    }//GEN-LAST:event_mnuAddVideogameActionPerformed
-
-    private void mnuAddVideogameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAddVideogameMouseClicked
-       AddVideogame av = new AddVideogame(this, true);
-    }//GEN-LAST:event_mnuAddVideogameMouseClicked
-
     private void mnuStatisticsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuStatisticsMouseClicked
        new Statistics(this, true);
     }//GEN-LAST:event_mnuStatisticsMouseClicked
 
     private void mnuEraseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuEraseMousePressed
         EraseData ed = new EraseData(this,true);
-        
     }//GEN-LAST:event_mnuEraseMousePressed
 
     private void mnuOffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuOffMouseClicked
@@ -369,7 +406,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     }//GEN-LAST:event_mnuOffMouseClicked
 
     private void mnuSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSortMouseClicked
-      
         new SortBy(this,true);
     }//GEN-LAST:event_mnuSortMouseClicked
 
@@ -378,7 +414,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     }//GEN-LAST:event_mnuDeleteMouseClicked
 
     private void tblListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListMouseClicked
-        
         /*Al clicar en la tabla quiero detectar el punto exacto donde se ha realizado el click.
         Para eso voy a obtener 2 ejes*/
         int column = tblList.getColumnModel().getColumnIndexAtX(evt.getX()); //Obtén el índice de la columna donde el click
@@ -395,8 +430,16 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
                 new UpdateVideogame(this,true,row);
             }
         }
-        
     }//GEN-LAST:event_tblListMouseClicked
+
+    private void mnuAddVideogameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAddVideogameActionPerformed
+        AddVideogame av = new AddVideogame(this, true);
+        System.out.println("itsme");
+    }//GEN-LAST:event_mnuAddVideogameActionPerformed
+
+    private void mnuAddConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAddConsoleActionPerformed
+        new AddConsole(this,true);
+    }//GEN-LAST:event_mnuAddConsoleActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgGameCase;
@@ -406,7 +449,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JMenu mnuAddVideogame;
+    private javax.swing.JMenuItem mnuAddConsole;
+    private javax.swing.JMenu mnuAddElement;
+    private javax.swing.JMenuItem mnuAddVideogame;
     private javax.swing.JMenu mnuDelete;
     private javax.swing.JMenu mnuErase;
     private javax.swing.JMenu mnuOff;
@@ -415,35 +460,4 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     private javax.swing.JMenu mnuStatistics;
     private javax.swing.JTable tblList;
     // End of variables declaration//GEN-END:variables
-
-    
-    //==================TIMER=========================
-    public void startTimer()
-    {
-        /*Inicialización del tiempo*/
-        timer = new Timer (DELAY,this); //Investigar el timer.
-        timer.start();
-    }
-            
-    @Override
-    public void actionPerformed(ActionEvent ae) 
-    {
-        if (DataControl.clear)
-        {
-            clearTable();
-            DataControl.clear=false;
-        }
-        
-        if (DataControl.recordChanged)
-        {
-            addRow();
-            DataControl.recordChanged=false;
-        }
-        
-        if (DataControl.refresh)
-        {
-            fillTable();
-            DataControl.refresh=false;
-        }
-    }
 }
