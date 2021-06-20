@@ -4,7 +4,7 @@ import java.sql.Date;
 
 /** 
  * Información sobre los videojuegos que se registran en el programa.
- * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
+ * @author Alex Guirao Lopez <alexguiraolopez@gmail.com>
  */
 public class Videogame 
 {
@@ -15,7 +15,6 @@ public class Videogame
     private String title;
     private String company;
     private String gameConsole;
-    //private Date releaseDate; //Para archivo binario.
     private Date releaseDate;
     private int completed;
     private String image;
@@ -53,6 +52,9 @@ public class Videogame
                 +"Release Date: "+releaseDate.toString();
     }
     
+    
+    //GET & SET
+    
     /**
      * Tamaño de cada uno de los registros.
      * Incluye las longitudes de los atributos con valor String y 
@@ -73,7 +75,6 @@ public class Videogame
         return String.format("%-"+GAME_CONSOLE_MAX_LENGTH+"."+GAME_CONSOLE_MAX_LENGTH+"s", this.gameConsole);
     }
 
-    //GET & SET
     public String getTitle() {
         return title;
     }
@@ -97,8 +98,6 @@ public class Videogame
     public int getYear(){
         return this.releaseDate.getYear();
     }
-    
-    
     
     public int getCompleted(){
         return this.completed;

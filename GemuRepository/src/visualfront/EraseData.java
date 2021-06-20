@@ -5,10 +5,9 @@ import filecontrol.VideogameFileControl;
 import datacontrol.DataControl;
 import java.awt.Color;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
- * @author Alex Guirao López <aguiraol2021@cepnet.net>
+ * Ventana para eliminar todos los datos del programa.
+ * @author Alex Guirao López <alexguiraolopez@gmail.com>
  */
 public class EraseData extends javax.swing.JDialog 
 {

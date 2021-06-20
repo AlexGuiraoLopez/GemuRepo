@@ -11,10 +11,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import elements.User;
 /**
- * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
+ * Ventana para iniciar al programa.
+ * @author Alex Guirao Lopez  <alexguiraolopez@gmail.com>
  */
-public class Login extends javax.swing.JFrame {
-    
+public class Login extends javax.swing.JFrame 
+{
     public Login()
     {
         initComponents();

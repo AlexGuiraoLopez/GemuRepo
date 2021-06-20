@@ -9,14 +9,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import elements.User;
 import elements.Videogame;
 import visualfront.ConsoleColors;
 
-/** 
- * @author Alex Guirao López <aguiraol2021@cepnet.net>
+/**
+ * Gestión de las consultas a la base de datos.
+ * @author Alex Guirao López  <alexguiraolopez@gmail.com>
  */
 public class Database 
 {
@@ -27,14 +26,14 @@ public class Database
         String url="jdbc:mysql://localhost/videogamesCollection";
         String user="root";
         String password="";
-        /*
-        String url="jdbc:sqlserver://85.208.20.43:1433;databaseName=videogamesCollection";
-        String user="sa";
-        String password="Aresu2020";
-        */
+        
         conn = DriverManager.getConnection(url, user, password);
     }
     
+    /**
+     * Cierra la conexión de la base de datos.
+     * @throws SQLException 
+     */
     public void close() throws SQLException
     {
         conn.close();
@@ -42,7 +41,7 @@ public class Database
     
     //==========================USERS===================================
     /**
-     * Comprueba si un usuario existe en la base de datos por su nombre.
+     * Comprueba si un usuario existe en la base de datos a partir de su nombre.
      * @param username nombre del usuario a comprobar.
      * @return TRUE si existe.
      */
@@ -72,6 +71,12 @@ public class Database
         return exists;
     }
     
+    /**
+     * Comprueba si la contraseña coincide con la del usuario intorucido.
+     * @param username nombre de usuario
+     * @param userPassword contraseña introducida por el usuario
+     * @return  TRUE si es correcto.
+     */
     public boolean checkUserPassword(String username, String userPassword)
     {
         boolean match = false;
@@ -264,7 +269,7 @@ public class Database
         
     //==============================COMPANIES===============================
     /**
-     * Comprueba si existe una compañía en concreto dentro de la base de datos. 
+     * Comprueba si existe una compañía a partir de su nombre. 
      * @param name nombre de la compañía a revisar.
      * @return TRUE si ya existe.
      */
@@ -367,9 +372,11 @@ public class Database
             
             for (Company c:companyList)
             {
-                ps.setString(1, c.getName());
-                ps.executeUpdate();
-                rowsChanged++;
+                if (!checkCompanyExists(c.getName())){
+                    ps.setString(1, c.getName());
+                    ps.executeUpdate();
+                    rowsChanged++;
+                }
             }
             
             if (rowsChanged!=0)
@@ -498,10 +505,13 @@ public class Database
             
             for (Console c: consoleList)
             {
-                ps.setString(1, c.getId());
-                ps.setString(2,c.getCompany().getName());
-                ps.executeUpdate();
-                rowsChanged++;
+                if (!checkConsoleExists(c.getId()))
+                {
+                    ps.setString(1, c.getId());
+                    ps.setString(2,c.getCompany().getName());
+                    ps.executeUpdate();
+                    rowsChanged++;
+                }
             }
             
             if (rowsChanged!=0)

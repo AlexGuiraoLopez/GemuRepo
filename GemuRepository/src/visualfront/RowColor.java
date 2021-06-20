@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 /** 
  * Clase para gestionar el color de las filas de la tabla de videojuegos que se muestra en la ventana principal.
- * @author Alex Guirao López <aguiraol2021@cepnet.net>
+ * @author Alex Guirao López  <alexguiraolopez@gmail.com>
  */
 public class RowColor extends DefaultTableCellRenderer
 {  

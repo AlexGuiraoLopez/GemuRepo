@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package visualfront;
 import localdata.LocalData;
 import filecontrol.VideogameFileControl;
@@ -15,8 +10,8 @@ import elements.Console;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 /**
- * Investigar sobre JDialog.
- * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
+ * Ventana para añadir un videojuego a la lista.
+ * @author Alex Guirao Lopez  <alexguiraolopez@gmail.com>
  */
 public class AddVideogame extends javax.swing.JDialog {
 

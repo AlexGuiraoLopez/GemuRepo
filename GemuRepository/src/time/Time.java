@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Alex Guirao López <aguiraol2021@cepnet.com>
+ * @author Alex Guirao López  <alexguiraolopez@gmail.com>
  */
 public class Time 
 {

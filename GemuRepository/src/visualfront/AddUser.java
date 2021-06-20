@@ -14,8 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Alex Guirao López <aguiraol2021@cepnet.net>
+ * Ventana para registrar a un nuevo usuario
+ * @author Alex Guirao López <alexguiraolopez@gmail.com>
  */
 public class AddUser extends javax.swing.JDialog {
 

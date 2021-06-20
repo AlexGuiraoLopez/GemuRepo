@@ -11,8 +11,8 @@ import visualfront.ConsoleColors;
 
 /** 
  * Libreria para controlar la comunicación con el archivo binario que da persistencia de datos
- * para los videojuegos que el usuario introduce.
- * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
+ * para los usuarios que se registran en el programa.
+ * @author Alex Guirao Lopez <alexguiraolopez@gmail.com>
  */
 public class UserFileControl 
 {

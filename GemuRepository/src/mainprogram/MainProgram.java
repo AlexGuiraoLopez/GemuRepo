@@ -34,15 +34,14 @@ public class MainProgram
             DataControl.companyList=db.getCompaniesList();
             DataControl.consoleList=db.getConsoleList();
             
-            //new Login();
-            new MainWindow();
+            new Login();
          
             db.close();
         }
         catch (SQLException ex) 
         {
             ErrorWindow error = new ErrorWindow();
-            System.out.println(ConsoleColors.RED+"Algo salió mal con la base de datos");
+            System.out.println(ConsoleColors.RED+"No pudo conectarse con la base de datos");
             ex.printStackTrace();
         }
     }

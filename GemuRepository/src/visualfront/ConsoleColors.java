@@ -1,7 +1,7 @@
 package visualfront;
 /**
  * Asigna color de fuente para mensajes de consola.
- * @author Alex Guirao López <aguiraol2021@cepnet.net>
+ * @author Alex Guirao López  <alexguiraolopez@gmail.com>
  */
 public class ConsoleColors 
 {

@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 /** 
  * Librería con los atributos comunes para todas las ventanas del programa.
- * @author Alex Guirao López <aguiraol2021@cepnet.net>
+ * @author Alex Guirao López  <alexguiraolopez@gmail.com>
  */
 public class WindowControl 
 {

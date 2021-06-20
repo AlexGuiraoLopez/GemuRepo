@@ -7,16 +7,15 @@ import elements.Videogame;
 import localdata.LocalData;
 
 /**
- *
- * @author Alex Guirao López <aguiraol2021@cepnet.net>
+ * Ventana para ordenar la lista según un criterio en concreto.
+ * @author Alex Guirao López  <alexguiraolopez@gmail.com>
  */
-public class SortBy extends javax.swing.JDialog {
+public class SortBy extends javax.swing.JDialog 
+{
 
     private boolean sorted=false;
     MainWindow mw;
-    /**
-     * Creates new form OrderBy
-     */
+
     public SortBy(MainWindow parent, boolean modal) 
     {
         super(parent, modal);

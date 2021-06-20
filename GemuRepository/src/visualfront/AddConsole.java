@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
+ * Ventana para añadir una videoconsola.
+ * @author Alex Guirao Lopez  <alexguiraolopez@gmail.com>
  */
 public class AddConsole extends javax.swing.JDialog 
 {

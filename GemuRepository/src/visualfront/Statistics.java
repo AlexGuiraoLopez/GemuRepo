@@ -4,13 +4,11 @@ import datacontrol.DataControl;
 import java.util.ArrayList;
 import elements.Videogame;
 /**
- * @author Alex Guirao López <aguiraol2021@cepnet.net>
+ * Ventana con las estadísticas de la colección.
+ * @author Alex Guirao López  <alexguiraolopez@gmail.com>
  */
 public class Statistics extends javax.swing.JDialog 
 {
-    /**
-     * Creates new form Statistics
-     */
     public Statistics(java.awt.Frame parent, boolean modal) 
     {
         super(parent, modal);

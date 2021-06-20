@@ -3,31 +3,27 @@ package visualfront;
 import localdata.LocalData;
 import database.Database;
 import datacontrol.DataControl;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
+import elements.Console;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
-import java.util.Comparator;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.Timer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import elements.Videogame;
-import time.Time;
-import visualfront.UpdateVideogame;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * @author Alex Guirao López <aguiraol2021@cepnet.net>
+ * Ventana principal del programa con todas las funciones.
+ * @author Alex Guirao López  <alexguiraolopez@gmail.com>
  */
 public class MainWindow extends javax.swing.JFrame implements ActionListener
 {
@@ -36,10 +32,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     int selectedRow=-1; //Número de fila seleccionada.
     
     RowColor rc = new RowColor(); //Renderer personalizado para las propiedades de la tabla.
-    
-    /**
-     * Creates new form MainWindow
-     */
+
     public MainWindow() 
     {
         initComponents();
@@ -289,11 +282,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(imgGameCase, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(265, 265, 265)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imgGameCase, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1615, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -435,8 +426,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     }//GEN-LAST:event_tblListMouseClicked
 
     private void mnuAddVideogameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAddVideogameActionPerformed
-        AddVideogame av = new AddVideogame(this, true);
-        System.out.println("itsme");
+            if (DataControl.consoleList.isEmpty())
+            {
+                new ExtraWindow("Primero añade una consola.");
+            }else{
+                AddVideogame av = new AddVideogame(this, true);
+            }        
     }//GEN-LAST:event_mnuAddVideogameActionPerformed
 
     private void mnuAddConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAddConsoleActionPerformed

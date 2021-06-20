@@ -4,9 +4,11 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import elements.Videogame;
 /**
- * @author Alex Guirao López <aguiraol2021@cepnet.net>
+ * Ventana para actualizar la información de un videojuego ya introducido.
+ * @author Alex Guirao López  <alexguiraolopez@gmail.com>
  */
-public class UpdateVideogame extends javax.swing.JDialog {
+public class UpdateVideogame extends javax.swing.JDialog 
+{
     
     private int row;
     private Videogame videogame;

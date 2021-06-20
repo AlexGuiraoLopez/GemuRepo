@@ -3,7 +3,7 @@ package elements;
 import java.util.Objects;
 
 /** 
- * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
+ * @author Alex Guirao Lopez  <alexguiraolopez@gmail.com>
  */
 public class Company 
 {

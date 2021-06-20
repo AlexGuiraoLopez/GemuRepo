@@ -2,7 +2,7 @@ package elements;
 
 /** 
  * Información sobre los usuarios que se registran al programa.
- * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
+ * @author Alex Guirao Lopez  <alexguiraolopez@gmail.com>
  */
 public class User 
 {

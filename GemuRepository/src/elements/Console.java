@@ -3,7 +3,7 @@ package elements;
 import java.util.Objects;
 
 /** 
- * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
+ * @author Alex Guirao Lopez <alexguiraolopez@gmail.com>
  */
 public class Console 
 {
@@ -16,7 +16,8 @@ public class Console
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode() 
+    {
         int hash = 7;
         hash = 11 * hash + Objects.hashCode(this.id);
         hash = 11 * hash + Objects.hashCode(this.company);
@@ -24,7 +25,8 @@ public class Console
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) 
+    {
         if (this == obj) {
             return true;
         }
@@ -44,10 +46,6 @@ public class Console
         return true;
     }
 
-    
-    
-    
-    
     public String getId() {
         return id;
     }
