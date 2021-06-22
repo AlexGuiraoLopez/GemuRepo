@@ -201,6 +201,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblList = new javax.swing.JTable();
@@ -213,6 +214,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         mnuSave = new javax.swing.JMenu();
         mnuStatistics = new javax.swing.JMenu();
         mnuSort = new javax.swing.JMenu();
+        mnuDb = new javax.swing.JMenu();
         mnuErase = new javax.swing.JMenu();
         mnuOff = new javax.swing.JMenu();
 
@@ -221,6 +223,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         jMenuItem2.setText("jMenuItem2");
 
         jMenu5.setText("jMenu5");
+
+        jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -345,6 +349,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         });
         jMenuBar1.add(mnuSort);
 
+        mnuDb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/database.png"))); // NOI18N
+        mnuDb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuDbMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnuDb);
+
         mnuErase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/warning.png"))); // NOI18N
         mnuErase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -437,6 +449,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     private void mnuAddConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAddConsoleActionPerformed
         new AddConsole(this,true);
     }//GEN-LAST:event_mnuAddConsoleActionPerformed
+
+    private void mnuDbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuDbMouseClicked
+        new DatabaseWindow(this,true);
+    }//GEN-LAST:event_mnuDbMouseClicked
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgGameCase;
@@ -444,11 +460,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenuItem mnuAddConsole;
     private javax.swing.JMenu mnuAddElement;
     private javax.swing.JMenuItem mnuAddVideogame;
+    private javax.swing.JMenu mnuDb;
     private javax.swing.JMenu mnuDelete;
     private javax.swing.JMenu mnuErase;
     private javax.swing.JMenu mnuOff;

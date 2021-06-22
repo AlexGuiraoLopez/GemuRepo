@@ -28,9 +28,9 @@ public class ExtraWindow extends javax.swing.JFrame
         lblMessage.setText("Successful sort!");
 
         btnAccept.setText("Accept");
-        btnAccept.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAcceptMouseClicked(evt);
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
             }
         });
 
@@ -60,9 +60,9 @@ public class ExtraWindow extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAcceptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcceptMouseClicked
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         setVisible(false);
-    }//GEN-LAST:event_btnAcceptMouseClicked
+    }//GEN-LAST:event_btnAcceptActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -122,7 +122,6 @@ public class EraseData extends javax.swing.JDialog
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         if (txtKeyWord.getText().equals(KEY_WORD))
         {
-            
             //Elimina de los archivos binarios
             VideogameFileControl.delete();
             UserFileControl.delete();

@@ -2,7 +2,7 @@
 
 Antes de empezar:
 => Para que se muestren las imágenes de los videojuegos de la lista al seleccionarlos, deben situarse dentro de la carpeta "assets/caseImage" y el nombre 
-de la imágen debe ser igual al título del videojuego introducido.
+de la imágen debe ser igual al título del videojuego introducido. Ya hay introducidas algunas imágenes de ejemplo.
 
 
 Descripción programa:
@@ -12,10 +12,8 @@ Descripción programa:
 (Título, año de publicación, empresa, consola, imagen de portada...)
 
 => Todos los datos persisten. Una vez el usuario cierra la aplicación, si ha seleccionado la opción de guardar, los datos
-son transferidos a la base de datos. Si no ha guardado, se le advierte de que podría perderlos si sale del programa y le permite guardarlos antes de salir.
-binario.
-
-=> Los usuarios también se guardan en la base de datos justo en el momento de registrarse.
+son transferidos a archivos binarios en la carpeta datafiles. Si no ha guardado manualmente, se le advierte de que podría perder los datos 
+si sale del programa y le permite guardarlos antes de salir.
 
 
 Interfaz Usuario:

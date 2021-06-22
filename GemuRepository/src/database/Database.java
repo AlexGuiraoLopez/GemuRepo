@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import elements.User;
 import elements.Videogame;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import visualfront.ConsoleColors;
 
 /**
@@ -21,11 +23,10 @@ public class Database
 {
     private Connection conn;
     
-    public Database() throws SQLException{
-        
+    public Database(String user, String password) throws SQLException
+    {
+        //String url="jdbc:sqlserver://85.208.20.43:1433;databaseName=chatRoom";
         String url="jdbc:mysql://localhost/videogamesCollection";
-        String user="root";
-        String password="";
         
         conn = DriverManager.getConnection(url, user, password);
     }
@@ -362,7 +363,7 @@ public class Database
      * Añade una lista de compañías a la base de datos.
      * @param companyList lista de compañías a añadir.
      */
-    public void InsertNewCompanies(ArrayList<Company> companyList)
+    public void insertNewCompanies(ArrayList<Company> companyList)
     {
         String query = "Insert into companies values (?)";
         
@@ -392,6 +393,24 @@ public class Database
             ex.printStackTrace();
         }
     }
+
+     /**
+     * Elimina las compañías de la base de datos.
+     */
+    public void deleteCompanies()
+    {
+        String query = "delete from companies";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.executeUpdate();
+        }
+        catch (SQLException ex) 
+        {
+            System.out.println(ConsoleColors.RED+"Problemas con la base de datos");
+            ex.printStackTrace();
+        }
+    }
+    
     
     //==============================CONSOLES===============================
     /**
@@ -495,7 +514,7 @@ public class Database
      * Añade una lista de consolas a la base de datos.
      * @param consoleList lista de consolas a añadir.
      */
-    public void InsertNewConsoles(ArrayList<Console> consoleList)
+    public void insertNewConsoles(ArrayList<Console> consoleList)
     {
         String query = "Insert into videogameConsoles values (?,?)";
         
@@ -526,5 +545,42 @@ public class Database
             System.out.println(ConsoleColors.RED+"Hubo un error al insertar una nueva consola"+ex);
             ex.printStackTrace();
         }
+    }
+    
+     /**
+     * Elimina las consolas de la base de datos.
+     */
+    public void deleteConsoles()
+    {
+        String query = "delete from videogameConsoles";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.executeUpdate();
+        }
+        catch (SQLException ex) 
+        {
+            System.out.println(ConsoleColors.RED+"Problemas con la base de datos");
+            ex.printStackTrace();
+        }
+    }
+    
+    //========================Consultas Generales==========================
+    /**
+     * Elimina toda la información de la base de datos.
+     */
+    public void deleteAll() throws SQLException
+    {
+        String query = " SET FOREIGN_KEY_CHECKS = 0";
+        PreparedStatement ps;
+        ps = conn.prepareStatement(query);
+        ps.execute();
+    
+        deleteCompanies();
+        deleteConsoles();
+        deleteVideogames();
+        
+        query = " SET FOREIGN_KEY_CHECKS = 1";
+        ps = conn.prepareStatement(query);
+        ps.execute();
     }
 }
