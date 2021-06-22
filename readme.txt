@@ -1,5 +1,9 @@
 -- GAME REPO--
 
+Acceso al programa:
+=> Haz doble click sobre el archivo "GemuRepository.jar" y ejecútalo con la máquina virtual de Java.
+
+
 Antes de empezar:
 => Para que se muestren las imágenes de los videojuegos de la lista al seleccionarlos, deben situarse dentro de la carpeta "assets/caseImage" y el nombre 
 de la imágen debe ser igual al título del videojuego introducido. Ya hay introducidas algunas imágenes de ejemplo.
