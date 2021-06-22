@@ -44,9 +44,9 @@ public class ForgotPassword extends javax.swing.JDialog
         lblPassword.setText("Password:");
 
         btnApply.setText("Apply");
-        btnApply.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnApplyMouseClicked(evt);
+        btnApply.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApplyActionPerformed(evt);
             }
         });
 
@@ -77,11 +77,8 @@ public class ForgotPassword extends javax.swing.JDialog
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblUsername)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblPassword)
-                                            .addComponent(lblError))))
+                                    .addComponent(lblPassword)
+                                    .addComponent(lblError))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -117,8 +114,8 @@ public class ForgotPassword extends javax.swing.JDialog
         setVisible(false);
     }//GEN-LAST:event_btnCancelMouseClicked
 
-    private void btnApplyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApplyMouseClicked
-        boolean found=false;
+    private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
+         boolean found=false;
         lblUsername.setVisible(false);
         lblPassword.setVisible(false);
         lblError.setVisible(false);
@@ -140,7 +137,7 @@ public class ForgotPassword extends javax.swing.JDialog
             lblError.setVisible(true);
             lblError.setText("Not email found in database");
         }
-    }//GEN-LAST:event_btnApplyMouseClicked
+    }//GEN-LAST:event_btnApplyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

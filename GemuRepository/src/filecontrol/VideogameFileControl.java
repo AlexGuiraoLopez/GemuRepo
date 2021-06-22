@@ -17,7 +17,7 @@ import visualfront.ConsoleColors;
  */
 public class VideogameFileControl 
 {
-    public final static String PATH="datafiles/videogame.bin";
+    public final static String PATH="datafiles/videogames.bin";
 
     /**
     * @return cantidad de registros de videojuegos que hay en el archivo binario. 

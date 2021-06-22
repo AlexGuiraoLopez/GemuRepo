@@ -68,9 +68,11 @@ public class Videogame
     public String getFormattedTitle(){
         return String.format("%-"+TITLE_MAX_LENGTH+"."+TITLE_MAX_LENGTH+"s", this.title);
     }
+    
     public String getFormattedCompany(){
         return String.format("%-"+COMPANY_MAX_LENGTH+"."+COMPANY_MAX_LENGTH+"s", this.company);
     }
+    
     public String getFormattedGameConsole(){
         return String.format("%-"+GAME_CONSOLE_MAX_LENGTH+"."+GAME_CONSOLE_MAX_LENGTH+"s", this.gameConsole);
     }

@@ -30,7 +30,6 @@ public class Login extends javax.swing.JFrame
         txtError.setVisible(false);
         setResizable(true);
         setVisible(true);
-     
     }
 
     @SuppressWarnings("unchecked")
@@ -141,26 +140,40 @@ public class Login extends javax.swing.JFrame
     }//GEN-LAST:event_btnForgotMouseClicked
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
-        try {
-            String username = txtUsername.getText() ;
-            String password = txtPass.getText();
-            Database db = new Database();
-            if (db.checkUserExists(username))
+        ArrayList<User> userList = DataControl.userList;
+        String username = txtUsername.getText() ;
+        String password = txtPass.getText();
+        int counter=0;
+        boolean userMatch = false;
+        boolean passwordFail = false;
+        
+        while (counter < userList.size()&&userMatch==false)
+        {
+            if (userList.get(counter).getUsername().equals(username))
             {
-                if (db.checkUserPassword(username, password))
+                if (userList.get(counter).getPassword().equals(password))
                 {
-                    new MainWindow();
+                    userMatch=true;
                 }else{
-                    txtError.setText("Contraseña incorrecta");
-                    txtError.setVisible(true);
+                    passwordFail= true;
                 }
-            }else{
-                txtError.setText("El usuario no existe");
-                txtError.setVisible(true);
             }
-            db.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            
+            counter++;
+        }
+        
+        if (userMatch)
+        {
+            new MainWindow();
+            setVisible(false);
+        }
+        else if (passwordFail)
+        {
+            txtError.setText("Contraseña incorrecta");
+            txtError.setVisible(true);
+        }else{
+            txtError.setText("El usuario no existe");
+            txtError.setVisible(true);
         }
         
     }//GEN-LAST:event_btnEnterActionPerformed

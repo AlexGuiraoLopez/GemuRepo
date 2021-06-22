@@ -118,40 +118,33 @@ public class AddConsole extends javax.swing.JDialog
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        try {
-            ArrayList<Company> companyList = DataControl.companyList;
-            ArrayList<Console> consoleList = DataControl.consoleList;
-            
-            Database db = new Database();
-            String company = txtCompany.getText();
-            String console = txtConsole.getText();
-            
-            /*Comprueba si la compañía existe en la base de datos.
-            * En caso de que no exista la añade.
-            * Comprueba si la consola existe en la base de datos.
-            * En caso de que no exista la añade.
-            */
-            if (!companyList.isEmpty()&&companyList.contains(new Company(company.toUpperCase())))
+        ArrayList<Company> companyList = DataControl.companyList;
+        ArrayList<Console> consoleList = DataControl.consoleList;
+
+        String company = txtCompany.getText();
+        String console = txtConsole.getText();
+
+        /*Comprueba si la compañía ya existe en la lista de compañías.
+        * En caso de que no exista la añade.
+        * Comprueba si la consola existe en la lista de consolas.
+        * En caso de que no exista la añade.
+        */
+        if (!companyList.isEmpty()&&companyList.contains(new Company(company.toUpperCase())))
+        {
+            if (!consoleList.contains(new Console(console.toUpperCase(),new Company(company.toUpperCase()))))
             {
-                if (!consoleList.contains(new Console(console.toUpperCase(),new Company(company.toUpperCase()))))
-                {
-                    DataControl.consoleList.add(new Console (console.toUpperCase(), new Company(company.toUpperCase())));
-                    DataControl.saved=false;
-                    setVisible(false);
-                }else{
-                    lblError.setText("Console already exists");
-                    lblError.setVisible(true);
-                }
-            }else{
-                DataControl.companyList.add(new Company(company.toUpperCase()));
                 DataControl.consoleList.add(new Console (console.toUpperCase(), new Company(company.toUpperCase())));
                 DataControl.saved=false;
                 setVisible(false);
+            }else{
+                lblError.setText("Console already exists");
+                lblError.setVisible(true);
             }
-            db.close();
-        } catch (SQLException ex) {
-            System.out.println(ConsoleColors.RED+"No se pudo acceder a la base de datos");
-            ex.printStackTrace();
+        }else{
+            DataControl.companyList.add(new Company(company.toUpperCase()));
+            DataControl.consoleList.add(new Console (console.toUpperCase(), new Company(company.toUpperCase())));
+            DataControl.saved=false;
+            setVisible(false);
         }
     }//GEN-LAST:event_btnInsertActionPerformed
 

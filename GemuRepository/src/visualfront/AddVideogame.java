@@ -89,6 +89,7 @@ public class AddVideogame extends javax.swing.JDialog {
         String title=txtTitle.getText();
         String company=(String)cbCompany.getSelectedItem();
         String gameConsole=(String)cbConsole.getSelectedItem();
+        
         /*Crear tipo DATE*/
         int year=Integer.parseInt(txtYear.getText()); //Obtén año
         int month=Integer.parseInt(txtMonth.getText()); //Obtén mes

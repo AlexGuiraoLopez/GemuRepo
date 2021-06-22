@@ -1,5 +1,7 @@
 package elements;
 
+import java.util.Objects;
+
 /** 
  * Información sobre los usuarios que se registran al programa.
  * @author Alex Guirao Lopez  <alexguiraolopez@gmail.com>
@@ -20,7 +22,38 @@ public class User
         this.password = password;
         this.email=email;
     }
+    
+      public User(String username) 
+    {
+        this.username = username;
+    }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.username);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (!Objects.equals(this.username, other.username)) {
+            return false;
+        }
+        return true;
+    }
+
+    
     public String getUsername() {
         return username;
     }

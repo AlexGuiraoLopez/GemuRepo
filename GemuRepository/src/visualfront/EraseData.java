@@ -3,6 +3,9 @@ import database.Database;
 import elements.Videogame;
 import filecontrol.VideogameFileControl;
 import datacontrol.DataControl;
+import filecontrol.CompanyFileControl;
+import filecontrol.ConsoleFileControl;
+import filecontrol.UserFileControl;
 import java.awt.Color;
 import java.sql.SQLException;
 /**
@@ -120,9 +123,13 @@ public class EraseData extends javax.swing.JDialog
         if (txtKeyWord.getText().equals(KEY_WORD))
         {
             try {
-                /*
+                //Elimina de los archivos binarios
                 VideogameFileControl.delete();
-                */
+                UserFileControl.delete();
+                ConsoleFileControl.delete();
+                CompanyFileControl.delete();
+                
+                //Elimina de la base de datos.
                 Database db = new Database();
                 db.deleteVideogames();
                 DataControl.gameList.clear();

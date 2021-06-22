@@ -7,6 +7,8 @@ package visualfront;
 import database.Database;
 import time.Time;
 import datacontrol.DataControl;
+import filecontrol.CompanyFileControl;
+import filecontrol.ConsoleFileControl;
 import filecontrol.VideogameFileControl;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -119,15 +121,21 @@ public class SaveData extends javax.swing.JDialog
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        
-        /*EN ARCHIVO BINARIO
+       //En archivos binarios:
+        //Videojuegos
         VideogameFileControl.delete();
         VideogameFileControl.write(DataControl.gameList);
-        DataControl.saved=true;
-        setVisible(false);
-        */
+        
+        //Consolas
+        ConsoleFileControl.delete();
+        ConsoleFileControl.write(DataControl.consoleList);
+        
+        //Compañías
+        CompanyFileControl.delete();
+        CompanyFileControl.write(DataControl.companyList);
 
         //EN BASE DE DATOS
+        /*
         try {
             Database db = new Database();
             db.deleteVideogames();
@@ -144,6 +152,9 @@ public class SaveData extends javax.swing.JDialog
             System.out.println(ConsoleColors.RED+"No se pudo acceder a la base de datos."+ex);
             ex.printStackTrace();
         }
+        */
+        
+        setVisible(false);
         
     }//GEN-LAST:event_btnSaveActionPerformed
 

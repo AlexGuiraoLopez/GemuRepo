@@ -9,6 +9,10 @@ import visualfront.Login;
 import visualfront.MainWindow;
 import visualfront.ErrorWindow;
 import datacontrol.DataControl;
+import filecontrol.CompanyFileControl;
+import filecontrol.ConsoleFileControl;
+import filecontrol.UserFileControl;
+import filecontrol.VideogameFileControl;
 
 /**
  * @author Alex Guirao Lopez <aguiraol2021@cepnet.net>
@@ -25,24 +29,13 @@ public class MainProgram
             System.out.println("Error: " + e.getMessage()); 
         }
         
-        //Realiza la conexión a la base de datos y empieza el flujo principal del programa.
-        try {
-            System.out.println("Comprobando conexión...");
-            Database db = new Database();
-            DataControl.userList=db.getUserList();
-            DataControl.gameList=db.getVideogameList();
-            DataControl.companyList=db.getCompaniesList();
-            DataControl.consoleList=db.getConsoleList();
+        //Consulta los archivos binarios para obtener los datos de cada uno de los elementos del programa.
+        DataControl.userList=UserFileControl.read();
+        DataControl.gameList=VideogameFileControl.read();
+        DataControl.companyList=CompanyFileControl.read();
+        DataControl.consoleList=ConsoleFileControl.read();
             
-            new Login();
+        new Login();
          
-            db.close();
-        }
-        catch (SQLException ex) 
-        {
-            ErrorWindow error = new ErrorWindow();
-            System.out.println(ConsoleColors.RED+"No pudo conectarse con la base de datos");
-            ex.printStackTrace();
-        }
     }
 }

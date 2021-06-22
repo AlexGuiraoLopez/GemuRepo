@@ -7,10 +7,13 @@ import java.util.Objects;
  */
 public class Console 
 {
+    public static int MAX_NAME_LENGTH=20;
+    
     private String id;
     private Company company;
 
-    public Console(String id, Company company) {
+    public Console(String id, Company company) 
+    {
         this.id = id;
         this.company = company;
     }
@@ -46,6 +49,14 @@ public class Console
         return true;
     }
 
+    public static int getRecordSize(){
+        return MAX_NAME_LENGTH+Company.MAX_NAME_LENGTH;
+    }
+    
+    public String getFormattedName(){
+        return String.format("%-"+MAX_NAME_LENGTH+"."+MAX_NAME_LENGTH+"s", this.id);
+    }
+    
     public String getId() {
         return id;
     }
@@ -61,6 +72,4 @@ public class Console
     public void setCompany(Company company) {
         this.company = company;
     }
-    
-    
 }

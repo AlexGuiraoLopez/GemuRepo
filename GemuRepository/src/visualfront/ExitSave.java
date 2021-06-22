@@ -3,6 +3,8 @@ package visualfront;
 import database.Database;
 import filecontrol.VideogameFileControl;
 import datacontrol.DataControl;
+import filecontrol.CompanyFileControl;
+import filecontrol.ConsoleFileControl;
 import java.sql.SQLException;
 /**
  * Ventana para confirmar la salida del programa cuándo hay datos que no han sido guardados.
@@ -101,11 +103,21 @@ public class ExitSave extends javax.swing.JDialog
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnSaveExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveExitActionPerformed
-        //En archivo Binario
-        //VideogameFileControl.delete();
-        //VideogameFileControl.write(DataControl.gameList);
-       
+        //En archivos binarios:
+        //Videojuegos
+        VideogameFileControl.delete();
+        VideogameFileControl.write(DataControl.gameList);
+        
+        //Consolas
+        ConsoleFileControl.delete();
+        ConsoleFileControl.write(DataControl.consoleList);
+        
+        //Compañías
+        CompanyFileControl.delete();
+        CompanyFileControl.write(DataControl.companyList);
+        
         //EN BASE DE DATOS
+        /*
         try {
             Database db = new Database();
             db.deleteVideogames();
@@ -122,7 +134,7 @@ public class ExitSave extends javax.swing.JDialog
             System.out.println(ConsoleColors.RED+"No se pudo acceder a la base de datos."+ex);
             ex.printStackTrace();
         }
-        
+        */
         System.exit(200);
     }//GEN-LAST:event_btnSaveExitActionPerformed
 
