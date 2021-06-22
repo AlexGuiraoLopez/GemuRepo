@@ -13,6 +13,7 @@ public class Statistics extends javax.swing.JDialog
     {
         super(parent, modal);
         initComponents();
+         this.getRootPane().setDefaultButton(btnExit); //Permite accionar el botón con la tecla intro.
         lblTotal.setText(Integer.toString(DataControl.gameList.size()));
         lblPercentage.setText(String.format("%.2f", getCompletedPercentage())+"%");
         setIconImage(WindowControl.appIcon.getImage());

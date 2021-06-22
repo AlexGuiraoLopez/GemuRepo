@@ -17,6 +17,7 @@ public class UpdateVideogame extends javax.swing.JDialog
     {
         super(parent, modal);
         initComponents();
+         this.getRootPane().setDefaultButton(btnUpdate); //Permite accionar el botón con la tecla intro.
         this.row=row;
         this.videogame=DataControl.gameList.get(row);
         fillVideogameInfo();
@@ -101,6 +102,11 @@ public class UpdateVideogame extends javax.swing.JDialog
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnUpdate)
+                        .addGap(66, 66, 66)
+                        .addComponent(btnCancel))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -113,14 +119,8 @@ public class UpdateVideogame extends javax.swing.JDialog
                                 .addComponent(chkCompleted))
                             .addComponent(txtGameConsole)
                             .addComponent(txtCompany)
-                            .addComponent(txtTitle))
-                        .addGap(0, 10, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnCancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnUpdate)))
-                .addContainerGap())
+                            .addComponent(txtTitle))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,6 +163,7 @@ public class UpdateVideogame extends javax.swing.JDialog
         
         DataControl.clear=true;
         DataControl.refresh=true;
+        DataControl.saved=false;
         setVisible(false);
     }//GEN-LAST:event_btnUpdateActionPerformed
 

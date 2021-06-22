@@ -17,6 +17,7 @@ public class AddConsole extends javax.swing.JDialog
     {
         super(parent, modal);
         initComponents();
+        this.getRootPane().setDefaultButton(btnInsert); //Permite accionar el botón con la tecla intro.
         setTitle("Gemu Repo - Add Console");
         setLocationRelativeTo(null);
         lblError.setVisible(false);

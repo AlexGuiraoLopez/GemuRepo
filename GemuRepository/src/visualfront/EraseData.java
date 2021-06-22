@@ -122,29 +122,33 @@ public class EraseData extends javax.swing.JDialog
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         if (txtKeyWord.getText().equals(KEY_WORD))
         {
+            
+            //Elimina de los archivos binarios
+            VideogameFileControl.delete();
+            UserFileControl.delete();
+            ConsoleFileControl.delete();
+            CompanyFileControl.delete();
+            DataControl.gameList.clear();
+            DataControl.clear=true;
+            setVisible(false);
+            
+            //Elimina de la base de datos.
+            /*
             try {
-                //Elimina de los archivos binarios
-                VideogameFileControl.delete();
-                UserFileControl.delete();
-                ConsoleFileControl.delete();
-                CompanyFileControl.delete();
-                
-                //Elimina de la base de datos.
                 Database db = new Database();
                 db.deleteVideogames();
-                DataControl.gameList.clear();
-                DataControl.clear=true;
                 db.close();
-                setVisible(false);
                 
             } catch (SQLException ex) {
                 System.out.println(ConsoleColors.RED+"No se pudieron eliminar los videojuegos de la base de datos.");
                 ex.printStackTrace();
             }
+            */
         }else{
             txtKeyWord.setForeground(Color.RED);
             txtKeyWord.setText("Invalid word");
         }
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed

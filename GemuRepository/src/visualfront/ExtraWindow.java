@@ -10,6 +10,7 @@ public class ExtraWindow extends javax.swing.JFrame
     public ExtraWindow(String message) 
     {
         initComponents();
+        this.getRootPane().setDefaultButton(btnAccept); //Permite accionar el botón con la tecla intro.
         setLocationRelativeTo(null);
         lblMessage.setText(message);
         setVisible(true);
