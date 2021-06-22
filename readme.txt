@@ -43,7 +43,7 @@ Tecnologías utilizadas:
 
 Versión 1.0 (24/05/2021)
 Versión 2.0 (20/06/2021)
-Versión 3.0 (EN DESARROLLO)
+Versión 3.0 (22/06/2021)
 
 Fecha de inicio del proyecto 20/05/2021
 
