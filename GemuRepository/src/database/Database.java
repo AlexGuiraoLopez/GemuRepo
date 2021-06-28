@@ -25,8 +25,8 @@ public class Database
     
     public Database(String user, String password) throws SQLException
     {
-        //String url="jdbc:sqlserver://85.208.20.43:1433;databaseName=chatRoom";
-        String url="jdbc:mysql://localhost/videogamesCollection";
+        String url="jdbc:sqlserver://85.208.20.43:1433;databaseName=videogamesCollection";
+        //String url="jdbc:mysql://localhost/videogamesCollection";
         
         conn = DriverManager.getConnection(url, user, password);
     }
@@ -570,7 +570,11 @@ public class Database
      */
     public void deleteAll() throws SQLException
     {
-        String query = " SET FOREIGN_KEY_CHECKS = 0";
+        //String query = " SET FOREIGN_KEY_CHECKS = 0";
+        
+        //Para SQL Server
+        String query = "EXEC sp_MSforeachtable \"ALTER TABLE ? NOCHECK CONSTRAINT all\"";
+        
         PreparedStatement ps;
         ps = conn.prepareStatement(query);
         ps.execute();
@@ -579,7 +583,7 @@ public class Database
         deleteConsoles();
         deleteVideogames();
         
-        query = " SET FOREIGN_KEY_CHECKS = 1";
+        //query = " SET FOREIGN_KEY_CHECKS = 1";
         ps = conn.prepareStatement(query);
         ps.execute();
     }

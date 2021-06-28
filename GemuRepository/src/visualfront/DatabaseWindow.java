@@ -26,8 +26,8 @@ public class DatabaseWindow extends javax.swing.JDialog
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnExport = new javax.swing.JButton();
         btnImport = new javax.swing.JButton();
+        btnExport = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
@@ -41,17 +41,17 @@ public class DatabaseWindow extends javax.swing.JDialog
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnExport.setText("Export");
-        btnExport.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnImport.setText("Import");
+        btnImport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnExportMouseClicked(evt);
+                btnImportMouseClicked(evt);
             }
         });
 
-        btnImport.setText("Import");
-        btnImport.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnExport.setText("Export");
+        btnExport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnImportMousePressed(evt);
+                btnExportMousePressed(evt);
             }
         });
 
@@ -99,11 +99,11 @@ public class DatabaseWindow extends javax.swing.JDialog
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(70, 70, 70)
                                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
@@ -149,8 +149,8 @@ public class DatabaseWindow extends javax.swing.JDialog
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(lblError)
@@ -160,7 +160,7 @@ public class DatabaseWindow extends javax.swing.JDialog
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnImportMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImportMousePressed
+    private void btnExportMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportMousePressed
         try {
             Database db = new Database(txtUser.getText(),txtPassword.getText());
             
@@ -175,14 +175,15 @@ public class DatabaseWindow extends javax.swing.JDialog
             setVisible(false);
         } catch (SQLException ex) {
             System.out.println(ConsoleColors.RED+"No se pudo conectar con la base de datos.");
+            ex.printStackTrace();
             lblError.setVisible(true);
             btnExit.setVisible(true);
-            btnExport.setVisible(false);
             btnImport.setVisible(false);
+            btnExport.setVisible(false);
         }
-    }//GEN-LAST:event_btnImportMousePressed
+    }//GEN-LAST:event_btnExportMousePressed
 
-    private void btnExportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportMouseClicked
+    private void btnImportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImportMouseClicked
         try {
             Database db = new Database(txtUser.getText(),txtPassword.getText());
             
@@ -198,12 +199,13 @@ public class DatabaseWindow extends javax.swing.JDialog
             setVisible(false);
         } catch (SQLException ex) {
             System.out.println(ConsoleColors.RED+"No se pudo conectar con la base de datos.");
+            ex.printStackTrace();
             lblError.setVisible(true);
             btnExit.setVisible(true);
-            btnExport.setVisible(false);
             btnImport.setVisible(false);
+            btnExport.setVisible(false);
         }
-    }//GEN-LAST:event_btnExportMouseClicked
+    }//GEN-LAST:event_btnImportMouseClicked
 
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
         setVisible(false);
