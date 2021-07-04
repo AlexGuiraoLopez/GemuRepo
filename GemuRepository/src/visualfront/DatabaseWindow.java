@@ -166,9 +166,9 @@ public class DatabaseWindow extends javax.swing.JDialog
             
             db.deleteAll();
             
-            db.InsertNewVideogames(DataControl.gameList);
             db.insertNewCompanies(DataControl.companyList);
             db.insertNewConsoles(DataControl.consoleList);
+            db.InsertNewVideogames(DataControl.gameList);
            
             
             db.close();

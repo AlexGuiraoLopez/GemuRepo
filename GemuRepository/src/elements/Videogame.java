@@ -1,6 +1,5 @@
 package elements;
 
-import java.sql.Date;
 
 /** 
  * Información sobre los videojuegos que se registran en el programa.
@@ -15,11 +14,11 @@ public class Videogame
     private String title;
     private String company;
     private String gameConsole;
-    private Date releaseDate;
+    private int releaseYear;
     private int completed;
     private String image;
     
-    public Videogame(String title, String company, String gameConsole, Date releaseDate, int completed) 
+    public Videogame(String title, String company, String gameConsole, int releaseYear, int completed) 
     {
         if (title.length()<=TITLE_MAX_LENGTH){
             this.title = title;
@@ -42,14 +41,14 @@ public class Videogame
         this.completed=completed;
         
         this.image=title.toLowerCase()+".jpg";
-        this.releaseDate = releaseDate;
+        this.releaseYear = releaseYear;
     }
 
     @Override
     public String toString() 
     {
         return "Videogame{" + "title=" + title + ", company=" + company + ", gameConsole=" + gameConsole +", " 
-                +"Release Date: "+releaseDate.toString();
+                +"Release Date: "+releaseYear;
     }
     
     
@@ -57,12 +56,12 @@ public class Videogame
     
     /**
      * Tamaño de cada uno de los registros.
-     * Incluye las longitudes de los atributos con valor String y 
-     * la fecha formada por 3 atributos de tipo integer (año, mes y dia).
+     * Incluye las longitudes de los atributos con valor String,
+     * el año de lanzamiento y un entero 0/1 para saber si se ha completado el juego.
      * @return tamaño de un registro.
      */
     public static int getRecordSize(){
-        return TITLE_MAX_LENGTH+COMPANY_MAX_LENGTH+GAME_CONSOLE_MAX_LENGTH+(Integer.BYTES*4);
+        return TITLE_MAX_LENGTH+COMPANY_MAX_LENGTH+GAME_CONSOLE_MAX_LENGTH+(Integer.BYTES*2);
     }
     
     public String getFormattedTitle(){
@@ -89,17 +88,19 @@ public class Videogame
         return gameConsole;
     }
 
-    public Date getReleaseDate() {
-        return releaseDate;
+    public int getReleaseYear() {
+        return releaseYear;
     }
 
     public String getImage() {
         return image;
     }
     
+    /*
     public int getYear(){
-        return this.releaseDate.getYear();
+        return this.releaseYear.getYear();
     }
+    */
     
     public int getCompleted(){
         return this.completed;
@@ -116,11 +117,11 @@ public class Videogame
     public void setGameConsole(String gameConsole) {
         this.gameConsole = gameConsole;
     }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
+    
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
     }
-
+    
     public void setCompleted(int completed) {
         this.completed = completed;
     }

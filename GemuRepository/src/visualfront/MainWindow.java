@@ -64,7 +64,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
             rowData[1]= DataControl.gameList.get(i).getTitle();
             rowData[2]= DataControl.gameList.get(i).getGameConsole();
             rowData[3]= DataControl.gameList.get(i).getCompany();
-            rowData[4]= DataControl.gameList.get(i).getReleaseDate();
+            rowData[4]= DataControl.gameList.get(i).getReleaseYear();
             model.addRow(rowData);
             
             DataControl.recordChanged=false;
@@ -86,7 +86,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener
         rowData[1]= DataControl.gameList.get(lastPos).getTitle();
         rowData[2]= DataControl.gameList.get(lastPos).getGameConsole();
         rowData[3]= DataControl.gameList.get(lastPos).getCompany();
-        rowData[4]= DataControl.gameList.get(lastPos).getReleaseDate();
+        rowData[4]= DataControl.gameList.get(lastPos).getReleaseYear();
         
         model.addRow(rowData);
     }

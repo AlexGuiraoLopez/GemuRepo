@@ -189,8 +189,8 @@ public class SortBy extends javax.swing.JDialog
             @Override
             public int compare(Videogame t, Videogame t1) 
             {
-                int year = t.getYear();
-                int year1 = t1.getYear();
+                int year = t.getReleaseYear();
+                int year1 = t1.getReleaseYear();
                 return year-year1;
             }
         });

@@ -17,9 +17,11 @@ PRIMARY KEY (username));
 create table videogames(
 title varchar(40),
 company varchar(15),
-gameConsole varchar(15),
-releaseDate date,
+console varchar(15),
+releaseYear int CHECK (releaseYear>=1700 && releaseYear <= year(curdate())),
 completed int,
+FOREIGN KEY (company) REFERENCES companies (id),
+FOREIGN KEY (gameConsole) REFERENCES consoles (id),
 PRIMARY KEY (title));
 
 --
@@ -29,15 +31,20 @@ create table companies(
 id varchar(20),
 PRIMARY KEY (id));
 
+INSERT INTO companies VALUES ("Nintendo");
+INSERT INTO companies VALUES ("Sega");
+INSERT INTO companies VALUES ("Microsoft");
+INSERT INTO companies VALUES ("Sony");
+INSERT INTO companies VALUES ("Atari");
+
 --
 #Tabla para las consolas.
 --
-create table videogameConsoles(
+create table consoles(
 id varchar(20),
 company varchar(20),
 PRIMARY KEY (id),
 FOREIGN KEY (company) REFERENCES companies(id));
-
 
 ## SELECTS para test ##
 Select * from videogames;
@@ -46,6 +53,4 @@ Select * from companies;
 Select * from videogameConsoles;
 
 ## INSERTS de prueba ##
--- insert into videogames values ("Pokemon","Nintendo","gameboy","1994-12-10",1);
--- insert into videogames values ("Pokemon2","Nintendo","gameboy","1994-12-10",1);
--- insert into videogames values ("Pokemon3","Nintendo","gameboy","1994-12-10",1);
+insert into videogames values ("Pokemon Verde Hoja","Nintendo","Gameboy Advance",2004,1);

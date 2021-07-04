@@ -1,8 +1,5 @@
 package visualfront;
 import localdata.LocalData;
-import filecontrol.VideogameFileControl;
-import java.util.ArrayList;
-import java.sql.Date;
 import elements.Videogame;
 import datacontrol.DataControl;
 import elements.Company;
@@ -92,9 +89,6 @@ public class AddVideogame extends javax.swing.JDialog {
         
         /*Crear tipo DATE*/
         int year=Integer.parseInt(txtYear.getText()); //Obtén año
-        int month=Integer.parseInt(txtMonth.getText()); //Obtén mes
-        int day=Integer.parseInt(txtDay.getText()); //Obten día
-        String date = ""+year + "-" + month + "-" + day; //Concatena los valores en un String
         
         int completed=0;
         if (chkCompleted.isSelected())
@@ -102,15 +96,13 @@ public class AddVideogame extends javax.swing.JDialog {
             completed=1; //Investigar para guardar valores boolean en un archivo binario (apaño con integer = 1).
         }
         
-        DataControl.gameList.add(new Videogame(title, company, gameConsole,  Date.valueOf(date) /*new Date (year,month,day)*/,completed));
+        DataControl.gameList.add(new Videogame(title, company, gameConsole,  year,completed));
         DataControl.saved=false;
         DataControl.recordChanged=true;
         
         //Resetea los campos para añadir otro videojuego sin tener que cerrar la ventana.
         txtTitle.setText("");
-        txtDay.setText("");
         txtYear.setText("");
-        txtMonth.setText("");
         chkCompleted.setSelected(false);
         
         //DEBUG
@@ -130,8 +122,6 @@ public class AddVideogame extends javax.swing.JDialog {
         txtYear = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
-        txtMonth = new javax.swing.JTextField();
-        txtDay = new javax.swing.JTextField();
         btnRegister = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         chkCompleted = new javax.swing.JCheckBox();
@@ -154,7 +144,7 @@ public class AddVideogame extends javax.swing.JDialog {
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Release Date");
+        jLabel4.setText("Release Year");
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -198,7 +188,8 @@ public class AddVideogame extends javax.swing.JDialog {
                             .addComponent(cbCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
-                                .addComponent(jLabel2)))
+                                .addComponent(jLabel2))
+                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(54, 54, 54)
@@ -210,7 +201,7 @@ public class AddVideogame extends javax.swing.JDialog {
                                     .addComponent(cbConsole, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 110, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -218,24 +209,17 @@ public class AddVideogame extends javax.swing.JDialog {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(121, 121, 121)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtYear)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(79, 79, 79)
-                                .addComponent(chkCompleted))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
                                 .addGap(56, 56, 56)
-                                .addComponent(jLabel6))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(129, 129, 129)))
-                .addContainerGap(124, Short.MAX_VALUE))
+                                .addComponent(jLabel6))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(chkCompleted)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,10 +245,7 @@ public class AddVideogame extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chkCompleted)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegister)
@@ -275,8 +256,6 @@ public class AddVideogame extends javax.swing.JDialog {
         txtTitle.getAccessibleContext().setAccessibleName("txtTitle");
         txtYear.getAccessibleContext().setAccessibleName("txtYear");
         btnCancel.getAccessibleContext().setAccessibleName("btnRecord");
-        txtMonth.getAccessibleContext().setAccessibleName("txtMonth");
-        txtDay.getAccessibleContext().setAccessibleName("txtDay");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -308,8 +287,6 @@ public class AddVideogame extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtDay;
-    private javax.swing.JTextField txtMonth;
     private javax.swing.JTextField txtTitle;
     private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables

@@ -36,14 +36,12 @@ public class UpdateVideogame extends javax.swing.JDialog
         txtGameConsole.setText(videogame.getGameConsole());
         
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        String dateText = sdf.format(videogame.getReleaseDate());
+        String dateText = sdf.format(videogame.getReleaseYear());
         String year = dateText.substring(0,4);
         String month = dateText.substring(5,7);
         String day = dateText.substring(8,10);
         
         txtYear.setText(year);
-        txtMonth.setText(month);
-        txtDay.setText(day);
         
         if (videogame.getCompleted()==1)
         {
@@ -61,8 +59,6 @@ public class UpdateVideogame extends javax.swing.JDialog
         txtYear = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        txtMonth = new javax.swing.JTextField();
-        txtDay = new javax.swing.JTextField();
         chkCompleted = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -89,10 +85,6 @@ public class UpdateVideogame extends javax.swing.JDialog
             }
         });
 
-        txtMonth.setText("jTextField1");
-
-        txtDay.setText("jTextField1");
-
         chkCompleted.setText("Completed");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,12 +102,8 @@ public class UpdateVideogame extends javax.swing.JDialog
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(chkCompleted))
                             .addComponent(txtGameConsole)
                             .addComponent(txtCompany)
@@ -134,8 +122,6 @@ public class UpdateVideogame extends javax.swing.JDialog
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chkCompleted))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -151,8 +137,8 @@ public class UpdateVideogame extends javax.swing.JDialog
         videogame.setTitle(txtTitle.getText());
         videogame.setCompany(txtCompany.getText());
         videogame.setGameConsole(txtGameConsole.getText());
-        String releaseDate=txtYear.getText()+"-"+txtMonth.getText()+"-"+txtDay.getText();
-        videogame.setReleaseDate(Date.valueOf(releaseDate));
+        
+        videogame.setReleaseYear(Integer.parseInt(txtYear.getText().toString()));
         
         if (chkCompleted.isSelected())
         {
@@ -176,9 +162,7 @@ public class UpdateVideogame extends javax.swing.JDialog
     private javax.swing.JButton btnUpdate;
     private javax.swing.JCheckBox chkCompleted;
     private javax.swing.JTextField txtCompany;
-    private javax.swing.JTextField txtDay;
     private javax.swing.JTextField txtGameConsole;
-    private javax.swing.JTextField txtMonth;
     private javax.swing.JTextField txtTitle;
     private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables

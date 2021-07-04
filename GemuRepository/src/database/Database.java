@@ -3,7 +3,6 @@ package database;
 import elements.Company;
 import elements.Console;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import elements.User;
 import elements.Videogame;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import visualfront.ConsoleColors;
 
 /**
@@ -25,8 +22,8 @@ public class Database
     
     public Database(String user, String password) throws SQLException
     {
-        String url="jdbc:sqlserver://85.208.20.43:1433;databaseName=videogamesCollection";
-        //String url="jdbc:mysql://localhost/videogamesCollection";
+        //String url="jdbc:sqlserver://85.208.20.43:1433;databaseName=videogamesCollection";
+        String url="jdbc:mysql://localhost/videogamesCollection";
         
         conn = DriverManager.getConnection(url, user, password);
     }
@@ -194,10 +191,10 @@ public class Database
                 String title = rs.getString(1);
                 String company = rs.getString(2);
                 String gameConsole = rs.getString(3);
-                String date = rs.getString(4);
-                
+                int releaseYear = rs.getInt(4);
                 int completed = rs.getInt(5);
-                videogameList.add(new Videogame(title, company, gameConsole,Date.valueOf(date),completed));
+                
+                videogameList.add(new Videogame(title, company, gameConsole,releaseYear,completed));
             }
             
             if (!aux)
@@ -230,7 +227,7 @@ public class Database
                 ps.setString(1, v.getTitle());
                 ps.setString(2, v.getCompany());
                 ps.setString(3, v.getGameConsole());
-                ps.setDate(4, v.getReleaseDate());
+                ps.setInt(4, v.getReleaseYear());
                 ps.setInt(5, v.getCompleted());
             
                 ps.executeUpdate();
@@ -421,7 +418,7 @@ public class Database
     public boolean checkConsoleExists(String name)
     {
         boolean exists=false;
-        String query = "Select * from videogameConsoles where id = ?";
+        String query = "Select * from consoles where id = ?";
         
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -516,7 +513,7 @@ public class Database
      */
     public void insertNewConsoles(ArrayList<Console> consoleList)
     {
-        String query = "Insert into videogameConsoles values (?,?)";
+        String query = "Insert into consoles values (?,?)";
         
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -552,7 +549,7 @@ public class Database
      */
     public void deleteConsoles()
     {
-        String query = "delete from videogameConsoles";
+        String query = "delete from consoles";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.executeUpdate();
@@ -570,10 +567,10 @@ public class Database
      */
     public void deleteAll() throws SQLException
     {
-        //String query = " SET FOREIGN_KEY_CHECKS = 0";
-        
         //Para SQL Server
-        String query = "EXEC sp_MSforeachtable \"ALTER TABLE ? NOCHECK CONSTRAINT all\"";
+        //String query = "EXEC sp_MSforeachtable \"ALTER TABLE ? NOCHECK CONSTRAINT all\"";
+        
+        String query = " SET FOREIGN_KEY_CHECKS = 0";
         
         PreparedStatement ps;
         ps = conn.prepareStatement(query);
@@ -583,7 +580,7 @@ public class Database
         deleteConsoles();
         deleteVideogames();
         
-        //query = " SET FOREIGN_KEY_CHECKS = 1";
+        query = " SET FOREIGN_KEY_CHECKS = 1";
         ps = conn.prepareStatement(query);
         ps.execute();
     }

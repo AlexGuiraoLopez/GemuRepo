@@ -42,9 +42,7 @@ public class VideogameFileControl
                 raf.write(v.getFormattedTitle().getBytes(Charset.defaultCharset()));
                 raf.write(v.getFormattedCompany().getBytes(Charset.defaultCharset()));
                 raf.write(v.getFormattedGameConsole().getBytes(Charset.defaultCharset()));
-                raf.writeInt(v.getReleaseDate().getYear());
-                raf.writeInt(v.getReleaseDate().getMonth());
-                raf.writeInt(v.getReleaseDate().getDay());
+                raf.writeInt(v.getReleaseYear());
                 raf.writeInt(v.getCompleted());
             }
             
@@ -94,12 +92,10 @@ public class VideogameFileControl
                     gameConsole=new String(bName).trim();
 
                     year=raf.readInt();
-                    month=raf.readInt();
-                    day=raf.readInt();
 
                     completed = raf.readInt();
                     
-                    list.add(new Videogame(title,company,gameConsole,new Date(year,month,day),completed));
+                    list.add(new Videogame(title,company,gameConsole,year,completed));
                 }
 
                 raf.close();
