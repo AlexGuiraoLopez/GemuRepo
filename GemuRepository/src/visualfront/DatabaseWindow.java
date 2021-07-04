@@ -176,6 +176,7 @@ public class DatabaseWindow extends javax.swing.JDialog
         } catch (SQLException ex) {
             System.out.println(ConsoleColors.RED+"No se pudo conectar con la base de datos.");
             ex.printStackTrace();
+            
             lblError.setVisible(true);
             btnExit.setVisible(true);
             btnImport.setVisible(false);

@@ -22,8 +22,14 @@ public class Database
     
     public Database(String user, String password) throws SQLException
     {
-        //String url="jdbc:sqlserver://85.208.20.43:1433;databaseName=videogamesCollection";
-        String url="jdbc:mysql://localhost/videogamesCollection";
+        //Localhost
+        //String url="jdbc:mysql://localhost/videogamesCollection";
+        
+        //SQL Server
+        //String url="jdbc:sqlserver://85.208.22.148:1433;databaseName=videogamesCollection";
+        
+        //MySql 
+        String url="jdbc:mysql://85.208.22.148:3306/videogamesCollection?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         
         conn = DriverManager.getConnection(url, user, password);
     }
