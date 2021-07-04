@@ -1,10 +1,8 @@
 package visualfront;
 
-import database.Database;
 import datacontrol.DataControl;
 import elements.Company;
 import elements.Console;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +18,7 @@ public class AddConsole extends javax.swing.JDialog
         this.getRootPane().setDefaultButton(btnInsert); //Permite accionar el botón con la tecla intro.
         setTitle("Gemu Repo - Add Console");
         setLocationRelativeTo(null);
+        initCompaniesComboBox();
         lblError.setVisible(false);
         setVisible(true);
     }
@@ -34,8 +33,8 @@ public class AddConsole extends javax.swing.JDialog
         btnCancel = new javax.swing.JButton();
         lblCompany = new javax.swing.JLabel();
         lblConsole = new javax.swing.JLabel();
-        txtCompany = new javax.swing.JTextField();
         lblError = new javax.swing.JLabel();
+        cbCompanies = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,28 +69,28 @@ public class AddConsole extends javax.swing.JDialog
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
+                        .addGap(114, 114, 114)
                         .addComponent(lblError))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
+                        .addGap(112, 112, 112)
                         .addComponent(lblConsole))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
+                        .addContainerGap(73, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel1)
-                            .addComponent(txtCompany)
-                            .addComponent(txtConsole))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtConsole)
+                            .addComponent(cbCompanies, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(71, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lblCompany)
                 .addGap(119, 119, 119))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
-                .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,8 +99,8 @@ public class AddConsole extends javax.swing.JDialog
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addComponent(lblCompany)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(cbCompanies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblConsole)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -118,11 +117,17 @@ public class AddConsole extends javax.swing.JDialog
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void initCompaniesComboBox(){
+        for (Company c: DataControl.companyList){
+            cbCompanies.addItem(c.getName());
+        }
+    }
+    
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         ArrayList<Company> companyList = DataControl.companyList;
         ArrayList<Console> consoleList = DataControl.consoleList;
 
-        String company = txtCompany.getText();
+        String company = cbCompanies.getSelectedItem().toString();
         String console = txtConsole.getText();
 
         /*Comprueba si la compañía ya existe en la lista de compañías.
@@ -157,11 +162,11 @@ public class AddConsole extends javax.swing.JDialog
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnInsert;
+    private javax.swing.JComboBox<String> cbCompanies;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCompany;
     private javax.swing.JLabel lblConsole;
     private javax.swing.JLabel lblError;
-    private javax.swing.JTextField txtCompany;
     private javax.swing.JTextField txtConsole;
     // End of variables declaration//GEN-END:variables
 }

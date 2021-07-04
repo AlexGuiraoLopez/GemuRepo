@@ -187,9 +187,9 @@ public class DatabaseWindow extends javax.swing.JDialog
         try {
             Database db = new Database(txtUser.getText(),txtPassword.getText());
             
-            DataControl.gameList=db.getVideogameList();
             DataControl.companyList=db.getCompaniesList();
             DataControl.consoleList=db.getConsoleList();
+            DataControl.gameList=db.getVideogameList();
             
             DataControl.clear=true;
             DataControl.refresh=true;

@@ -478,7 +478,7 @@ public class Database
     public ArrayList<Console> getConsoleList()
     {
         ArrayList<Console> consoleList=new ArrayList();
-        String query = "select * from videogameConsoles";
+        String query = "select * from consoles";
         PreparedStatement ps;
         boolean aux=false;
         

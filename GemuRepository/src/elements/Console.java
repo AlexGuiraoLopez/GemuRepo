@@ -48,7 +48,7 @@ public class Console
         }
         return true;
     }
-
+    
     public static int getRecordSize(){
         return MAX_NAME_LENGTH+Company.MAX_NAME_LENGTH;
     }
