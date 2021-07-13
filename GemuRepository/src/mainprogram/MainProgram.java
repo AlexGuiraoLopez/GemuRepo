@@ -24,16 +24,16 @@ public class MainProgram
     public static void main(String[] args) throws SQLException 
     {
         //Comprueba el estado del driver para conectar a la base de datos. 
-       try {
+       //try {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 System.out.println("Driver funciona correctamente");
             } catch (ClassNotFoundException ex) {
                 System.out.println("Error al registrar el driver de MySQL: " + ex);
             }
+            /*
+            // Prueba de conexión con la base de datos
             Connection connection = null;
-            // Database connect
-            // Conectamos con la base de datos
             connection = DriverManager.getConnection(
                     "jdbc:mysql://85.208.22.148:3306/videogamesCollection",
                     "aresu", "Aresu2020");
@@ -43,8 +43,8 @@ public class MainProgram
             System.out.println("Error: " + sqle);
             sqle.printStackTrace();
         }
+       */
     
-  
         //Consulta los archivos binarios para obtener los datos de cada uno de los elementos del programa.
         DataControl.userList=UserFileControl.read();
         DataControl.gameList=VideogameFileControl.read();
